@@ -1,2 +1,173 @@
-{}
-
+{
+  "app": {
+    "title": "SafeCar",
+    "subtitle": "Soluciones IoT para Servicios Automotrices"
+  },
+  "navigation": {
+    "dashboard": "Panel Principal",
+    "service_requests": "Solicitudes de Servicio",
+    "service_history": "Historial de Servicios",
+    "vehicle_management": "Gestión de Vehículos",
+    "reports": "Reportes",
+    "settings": "Configuración",
+    "logout": "Cerrar Sesión"
+  },
+  "auth": {
+    "sign_in": {
+      "title": "Iniciar Sesión",
+      "subtitle": "Acceso al sistema",
+      "email_label": "Correo electrónico",
+      "email_placeholder": "Ingresa tu correo electrónico",
+      "email_required": "El correo electrónico es obligatorio",
+      "password_label": "Contraseña",
+      "password_placeholder": "Ingresa tu contraseña",
+      "password_required": "La contraseña es obligatoria",
+      "sign_in_button": "Iniciar sesión",
+      "no_account": "¿Aún no tienes una cuenta?",
+      "create_account": "Crear cuenta",
+      "success_message": "Inicio de sesión exitoso",
+      "complete_fields": "Por favor, completa todos los campos"
+    },
+    "sign_up": {
+      "title": "Registro de Cuenta de Taller",
+      "workshop_info": {
+        "title": "Información del Taller",
+        "subtitle": "Datos comerciales y de contacto",
+        "workshop_name": "Nombre del taller",
+        "workshop_name_placeholder": "Ej: Taller Mecánico Los Pinos",
+        "workshop_name_required": "Nombre obligatorio",
+        "ruc": "RUC",
+        "ruc_placeholder": "20123456789",
+        "ruc_required": "RUC obligatorio",
+        "company_name": "Razón social",
+        "company_name_placeholder": "Ej: Servicios Automotrices Los Pinos S.A.C.",
+        "company_name_required": "Razón social obligatoria",
+        "address": "Dirección",
+        "address_placeholder": "Ej: Av. San Martín 254, Ica",
+        "address_required": "La dirección es obligatoria",
+        "email": "Email",
+        "email_placeholder": "contacto@taller.com",
+        "email_required": "Email obligatorio",
+        "phone": "Teléfono",
+        "phone_placeholder": "999 888 777",
+        "phone_required": "Teléfono obligatorio"
+      },
+      "account_security": {
+        "title": "Cuenta y Seguridad",
+        "subtitle": "Credenciales de acceso y responsable",
+        "owner_name": "Propietario o responsable",
+        "owner_name_placeholder": "Ej: José Ramírez Huamán",
+        "owner_name_required": "El nombre es obligatorio",
+        "password": "Contraseña",
+        "password_placeholder": "Mínimo 8 caracteres",
+        "password_required": "Contraseña obligatoria",
+        "confirm_password": "Confirmar contraseña",
+        "confirm_password_placeholder": "Repite la contraseña",
+        "confirm_password_required": "Confirma tu contraseña",
+        "passwords_no_match": "Las contraseñas no coinciden",
+        "accept_terms": "Acepto los términos y condiciones de uso",
+        "accept_terms_required": "Debes aceptar los términos para continuar"
+      },
+      "create_account_button": "Crear Cuenta de Taller",
+      "form_complete": "Formulario completo",
+      "complete_required_fields": "Completa todos los campos requeridos",
+      "registration_success": "Registro exitoso. Ahora puedes iniciar sesión",
+      "complete_fields_correctly": "Por favor, completa todos los campos correctamente",
+      "passwords_not_match": "Las contraseñas no coinciden",
+      "must_accept_terms": "Debes aceptar los términos y condiciones"
+    }
+  },
+  "service_requests": {
+    "title": "Gestión de Solicitudes de Servicio",
+    "subtitle": "Administra las solicitudes de citas y servicios automotrices de los clientes",
+    "new_request": "Nueva Solicitud",
+    "delete": "Eliminar",
+    "export": "Exportar",
+    "search_placeholder": "Busca por cliente, teléfono, placa, marca/modelo, servicio...",
+    "clear_filters": "Limpiar filtros",
+    "columns": {
+      "customer": "Cliente",
+      "phone": "Teléfono",
+      "plate": "Placa",
+      "brand_model": "Marca/Modelo",
+      "appointment_date": "Fecha Cita",
+      "service": "Servicio",
+      "status": "Estado"
+    },
+    "status": {
+      "pending": "PENDIENTE",
+      "confirmed": "CONFIRMADA",
+      "in_progress": "EN PROCESO",
+      "completed": "COMPLETADA",
+      "cancelled": "CANCELADA",
+      "all": "Todos"
+    }
+  },
+  "service_history": {
+    "title": "Historial de Servicios Vehiculares",
+    "subtitle": "Registro completo de mantenimientos y reparaciones realizadas a los vehículos",
+    "new_history": "Nuevo Historial",
+    "delete": "Eliminar",
+    "export": "Exportar",
+    "search_placeholder": "Busca por placa, vehículo, propietario, tipo de servicio, centro...",
+    "clear_filters": "Limpiar filtros",
+    "columns": {
+      "plate": "Placa",
+      "vehicle": "Vehículo",
+      "owner": "Propietario",
+      "service_type": "Tipo de Servicio",
+      "service_date": "Fecha Servicio",
+      "mileage": "Kilometraje",
+      "cost": "Costo",
+      "service_center": "Centro de Servicio"
+    },
+    "service_types": {
+      "preventive_maintenance": "MANTENIMIENTO PREVENTIVO",
+      "major_repair": "REPARACIÓN MAYOR",
+      "oil_change": "CAMBIO DE ACEITE",
+      "technical_inspection": "REVISIÓN TÉCNICA",
+      "diagnosis": "DIAGNÓSTICO",
+      "brake_repair": "REPARACIÓN DE FRENOS",
+      "all": "Todos"
+    }
+  },
+  "data_table": {
+    "no_records": "No se encontraron registros",
+    "loading": "Cargando datos...",
+    "actions": "Acciones",
+    "view_details": "Ver detalles",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "showing": "Mostrando {first} a {last} de {totalRecords} registros"
+  },
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "create": "Crear",
+    "update": "Actualizar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "confirm": "Confirmar",
+    "yes": "Sí",
+    "no": "No",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Advertencia",
+    "info": "Información",
+    "required": "Obligatorio",
+    "optional": "Opcional",
+    "date_format": "dd/mm/aaaa",
+    "currency": "S/",
+    "km": "km",
+    "na": "N/A"
+  },
+  "errors": {
+    "server_error": "Error del servidor",
+    "internal_server_error": "Error interno del servidor al cargar {context}. Por favor, contacte al administrador.",
+    "request_error": "Error en la solicitud de {context}. Verifique los permisos de acceso.",
+    "network_error": "No se pudo conectar con el servidor para cargar {context}. Verifique su conexión a internet.",
+    "data_format_error": "Error en el formato de datos del servidor: {message}",
+    "invalid_format": "Formato de {context} inválido del servidor"
+  }
+}
