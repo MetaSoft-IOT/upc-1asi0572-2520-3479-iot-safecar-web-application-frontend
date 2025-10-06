@@ -80,11 +80,14 @@
   "service_requests": {
     "title": "Gestión de Solicitudes de Servicio",
     "subtitle": "Administra las solicitudes de citas y servicios automotrices de los clientes",
+    "title_singular": "solicitud de servicio",
+    "title_plural": "solicitudes de servicio",
     "new_request": "Nueva Solicitud",
     "delete": "Eliminar",
     "export": "Exportar",
     "search_placeholder": "Busca por cliente, teléfono, placa, marca/modelo, servicio...",
     "clear_filters": "Limpiar filtros",
+    "status_filter_placeholder": "Estado: Todos",
     "columns": {
       "customer": "Cliente",
       "phone": "Teléfono",
