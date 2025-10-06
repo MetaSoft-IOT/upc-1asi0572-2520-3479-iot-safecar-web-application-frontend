@@ -1,1 +1,173 @@
-{}
+{
+  "app": {
+    "title": "SafeCar",
+    "subtitle": "IoT Solutions for Automotive Services"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "service_requests": "Service Requests",
+    "service_history": "Service History",
+    "vehicle_management": "Vehicle Management",
+    "reports": "Reports",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "auth": {
+    "sign_in": {
+      "title": "Sign In",
+      "subtitle": "Access to the system",
+      "email_label": "Email",
+      "email_placeholder": "Enter your email",
+      "email_required": "Email is required",
+      "password_label": "Password",
+      "password_placeholder": "Enter your password",
+      "password_required": "Password is required",
+      "sign_in_button": "Sign In",
+      "no_account": "Don't have an account?",
+      "create_account": "Create Account",
+      "success_message": "Login successful",
+      "complete_fields": "Please complete all fields"
+    },
+    "sign_up": {
+      "title": "Workshop Account Registration",
+      "workshop_info": {
+        "title": "Workshop Information",
+        "subtitle": "Commercial and contact data",
+        "workshop_name": "Workshop name",
+        "workshop_name_placeholder": "e.g. Los Pinos Auto Repair",
+        "workshop_name_required": "Name is required",
+        "ruc": "RUC",
+        "ruc_placeholder": "20123456789",
+        "ruc_required": "Tax ID is required",
+        "company_name": "Company name",
+        "company_name_placeholder": "e.g. Los Pinos Automotive Services S.A.C.",
+        "company_name_required": "Company name is required",
+        "address": "Address",
+        "address_placeholder": "e.g. San Martin Ave 254, Lima",
+        "address_required": "Address is required",
+        "email": "Email",
+        "email_placeholder": "contact@workshop.com",
+        "email_required": "Email is required",
+        "phone": "Phone",
+        "phone_placeholder": "999 888 777",
+        "phone_required": "Phone is required"
+      },
+      "account_security": {
+        "title": "Account and Security",
+        "subtitle": "Access credentials and responsible person",
+        "owner_name": "Owner or responsible person",
+        "owner_name_placeholder": "e.g. John Smith",
+        "owner_name_required": "Name is required",
+        "password": "Password",
+        "password_placeholder": "Minimum 8 characters",
+        "password_required": "Password is required",
+        "confirm_password": "Confirm password",
+        "confirm_password_placeholder": "Repeat the password",
+        "confirm_password_required": "Confirm your password",
+        "passwords_no_match": "Passwords do not match",
+        "accept_terms": "I accept the terms and conditions of use",
+        "accept_terms_required": "You must accept the terms to continue"
+      },
+      "create_account_button": "Create Workshop Account",
+      "form_complete": "Form complete",
+      "complete_required_fields": "Complete all required fields",
+      "registration_success": "Registration successful. You can now sign in",
+      "complete_fields_correctly": "Please complete all fields correctly",
+      "passwords_not_match": "Passwords do not match",
+      "must_accept_terms": "You must accept the terms and conditions"
+    }
+  },
+  "service_requests": {
+    "title": "Service Request Management",
+    "subtitle": "Manage customer appointments and automotive service requests",
+    "new_request": "New Request",
+    "delete": "Delete",
+    "export": "Export",
+    "search_placeholder": "Search by customer, phone, plate, brand/model, service...",
+    "clear_filters": "Clear filters",
+    "columns": {
+      "customer": "Customer",
+      "phone": "Phone",
+      "plate": "License Plate",
+      "brand_model": "Brand/Model",
+      "appointment_date": "Appointment Date",
+      "service": "Service",
+      "status": "Status"
+    },
+    "status": {
+      "pending": "PENDING",
+      "confirmed": "CONFIRMED",
+      "in_progress": "IN PROGRESS",
+      "completed": "COMPLETED",
+      "cancelled": "CANCELLED",
+      "all": "All"
+    }
+  },
+  "service_history": {
+    "title": "Vehicle Service History",
+    "subtitle": "Complete record of maintenance and repairs performed on vehicles",
+    "new_history": "New History",
+    "delete": "Delete",
+    "export": "Export",
+    "search_placeholder": "Search by plate, vehicle, owner, service type, center...",
+    "clear_filters": "Clear filters",
+    "columns": {
+      "plate": "Plate",
+      "vehicle": "Vehicle",
+      "owner": "Owner",
+      "service_type": "Service Type",
+      "service_date": "Service Date",
+      "mileage": "Mileage",
+      "cost": "Cost",
+      "service_center": "Service Center"
+    },
+    "service_types": {
+      "preventive_maintenance": "PREVENTIVE MAINTENANCE",
+      "major_repair": "MAJOR REPAIR",
+      "oil_change": "OIL CHANGE",
+      "technical_inspection": "TECHNICAL INSPECTION",
+      "diagnosis": "DIAGNOSIS",
+      "brake_repair": "BRAKE REPAIR",
+      "all": "All"
+    }
+  },
+  "data_table": {
+    "no_records": "No records found",
+    "loading": "Loading data...",
+    "actions": "Actions",
+    "view_details": "View details",
+    "edit": "Edit",
+    "delete": "Delete",
+    "showing": "Showing {first} to {last} of {totalRecords} records"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "create": "Create",
+    "update": "Update",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information",
+    "required": "Required",
+    "optional": "Optional",
+    "date_format": "dd/mm/yyyy",
+    "currency": "S/",
+    "km": "km",
+    "na": "N/A"
+  },
+  "errors": {
+    "server_error": "Server Error",
+    "internal_server_error": "Internal server error loading {context}. Please contact the administrator.",
+    "request_error": "Request error for {context}. Please verify access permissions.",
+    "network_error": "Could not connect to server to load {context}. Please check your internet connection.",
+    "data_format_error": "Server data format error: {message}",
+    "invalid_format": "Invalid {context} format from server"
+  }
+}
