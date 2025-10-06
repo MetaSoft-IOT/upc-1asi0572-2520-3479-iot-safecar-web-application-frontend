@@ -18,10 +18,9 @@ export default {
     items() {
       return [
         { label: 'Dashboard', icon: 'pi pi-fw pi-chart-line', to: `/safe-car/mechanic/dashboard` },
-        { label: 'Ordenes', icon: 'pi pi-fw pi-file-edit', to: `/safe-car/mechanic/service-orders` },
-        { label: 'Verificadores', icon: 'pi pi-fw pi-users', to: `/safe-car/mechanic/verifiers` },
-        { label: 'Reportes', icon: 'pi pi-fw pi-chart-bar', to: `/safe-car/mechanic/verification-reports` },
-        { label: 'Clientes', icon: 'pi pi-fw pi-user', to: `/safe-car/mechanic/clients` },
+        { label: 'Solicitudes', icon: 'pi pi-fw pi-file-edit', to: `/safe-car/mechanic/service-request` },
+        { label: 'Historial', icon: 'pi pi-fw pi-users', to: `/safe-car/mechanic/service-history` },
+        { label: 'Vehículos', icon: 'pi pi-fw pi-chart-bar', to: `/safe-car/mechanic/vehicle-management` },
       ];
     }
   },
@@ -46,10 +45,10 @@ export default {
   <div class="sidebar-fixed">
     <aside class="sidebar-safe">
       <!-- Header del sidebar -->
-      <div class="sidebar-header">
-        <div class="sidebar-brand">
+      <div class="w-full sidebar-header justify-content-center align-items-center">
+        <div class="sidebar-brand ">
           <i class="pi pi-mobile brand-icon"></i>
-          <h3 class="brand-title">Tracker Mobility</h3>
+          <h3 class="brand-title">SafeCar</h3>
         </div>
       </div>
 
@@ -124,6 +123,7 @@ export default {
 .sidebar-brand {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   width: 100%;
 }
