@@ -80,7 +80,7 @@ export default {
             <div class="flex justify-content-center">
               <pv-card class="bg-white-alpha-10 border-none shadow-2">
                 <template #content>
-                  <img src="../../../assets/img/sign-in.jpg"
+                  <img src="../../assets/img/sign-in.jpg"
                        class="w-full max-w-20rem"
                        alt="SafeCar IoT Solutions" />
                 </template>
@@ -200,7 +200,7 @@ export default {
             <!-- Link de registro -->
             <div class="text-center ">
               <p class="mb-2" style="color: var(--color-muted);">¿Aún no tienes una cuenta?</p>
-              <router-link to="/safecar/sign-up" class="no-underline">
+              <router-link to="/sign-up" class="no-underline">
                 <pv-button
                     label="Crear cuenta"
                     icon="pi pi-user-plus"

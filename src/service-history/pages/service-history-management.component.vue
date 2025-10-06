@@ -1,6 +1,6 @@
 <script>
 
-import DataManager from "../../../shared/components/data-manager.component.vue";
+import DataManager from "../../shared/components/data-manager.component.vue";
 import {MaintenanceRecord, Vehicle, PartReplaced, TelematicSnapshot} from "../models/maintenance-history.entity.js";
 
 export default {

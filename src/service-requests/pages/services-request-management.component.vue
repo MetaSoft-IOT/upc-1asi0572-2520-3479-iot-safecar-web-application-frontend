@@ -1,6 +1,6 @@
 <script>
 
-import DataManager from "../../../shared/components/data-manager.component.vue";
+import DataManager from "../../shared/components/data-manager.component.vue";
 import {AppointmentRequest, Customer, Vehicle, Appointment} from "../models/appointment-request.entity.js";
 
 export default {

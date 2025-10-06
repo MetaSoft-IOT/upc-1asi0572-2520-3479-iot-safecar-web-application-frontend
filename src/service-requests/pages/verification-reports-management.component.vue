@@ -1,6 +1,6 @@
 <script>
 
-import DataManager from "../../../shared/components/data-manager.component.vue";
+import DataManager from "../../shared/components/data-manager.component.vue";
 import {ReportApiService} from "../services/reports-api.service.js";
 import {VerificationReport} from "../models/verification-report.entity.js";
 
