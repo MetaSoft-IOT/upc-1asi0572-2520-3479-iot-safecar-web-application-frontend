@@ -106,11 +106,14 @@
   "service_history": {
     "title": "Vehicle Service History",
     "subtitle": "Complete record of maintenance and repairs performed on vehicles",
+    "title_singular": "service history",
+    "title_plural": "service histories", 
     "new_history": "New History",
     "delete": "Delete",
     "export": "Export",
     "search_placeholder": "Search by plate, vehicle, owner, service type, center...",
     "clear_filters": "Clear filters",
+    "type_filter_placeholder": "Type: All",
     "columns": {
       "plate": "Plate",
       "vehicle": "Vehicle",
