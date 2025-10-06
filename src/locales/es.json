@@ -106,11 +106,14 @@
   "service_history": {
     "title": "Historial de Servicios Vehiculares",
     "subtitle": "Registro completo de mantenimientos y reparaciones realizadas a los vehículos",
+    "title_singular": "historial de servicio",
+    "title_plural": "historiales de servicio",
     "new_history": "Nuevo Historial",
     "delete": "Eliminar",
     "export": "Exportar",
     "search_placeholder": "Busca por placa, vehículo, propietario, tipo de servicio, centro...",
     "clear_filters": "Limpiar filtros",
+    "type_filter_placeholder": "Tipo: Todos",
     "columns": {
       "plate": "Placa",
       "vehicle": "Vehículo",
