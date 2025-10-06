@@ -32,7 +32,7 @@ export default {
       // Simulación de autenticación exitosa
       this.isAuthenticated = true;
       this.$toast.add({ severity: 'success', summary: 'Éxito', detail: 'Inicio de sesión exitoso.', life: 3000 });
-      this.$router.push( { name: 'dashboard' } );
+      this.$router.push( { name: 'safe-car' } );
     },
 
     onUsernameBlur() {
