@@ -24,14 +24,14 @@ export default {
 
       // Validar que ambos campos estén llenos
       if (!this.username || !this.password) {
-        this.$toast.add({ severity: 'error', summary: 'Error', detail: 'Por favor, completa todos los campos.', life: 3000 });
+        this.$toast.add({ severity: 'error', summary: this.$t('common.error'), detail: this.$t('auth.sign_in.complete_fields'), life: 3000 });
         return;
       }
 
       // Aquí iría la lógica real de autenticación
       // Simulación de autenticación exitosa
       this.isAuthenticated = true;
-      this.$toast.add({ severity: 'success', summary: 'Éxito', detail: 'Inicio de sesión exitoso.', life: 3000 });
+      this.$toast.add({ severity: 'success', summary: this.$t('common.success'), detail: this.$t('auth.sign_in.success_message'), life: 3000 });
       this.$router.push( { name: 'safe-car' } );
     },
 
@@ -68,11 +68,11 @@ export default {
             <!-- Title Section -->
             <div class="px-3">
               <h1 class="text-xl md:text-4xl font-bold line-height-3 m-0 pb-3" style="color: var(--color-white);">
-                "Conectamos tecnología e innovación para revolucionar tu taller"
+                "Connecting technology and innovation to revolutionize your workshop"
               </h1>
 
               <p class="text-base font-light m-0 line-height-3" style="color: var(--color-white);">
-                Soluciones IoT inteligentes para la gestión moderna de servicios automotrices
+                {{ $t('app.subtitle') }}
               </p>
             </div>
 
@@ -135,7 +135,7 @@ export default {
               <h1 class="text-4xl font-bold m-0 pt-6" style="color: var(--color-text-gray);">
                 <span style="color: var(--color-primary);">Safe</span><span style="color: var(--color-border-cards);">Car</span>
               </h1>
-              <p class="text-xl m-0 pt-2" style="color: var(--color-muted);">Acceso al sistema</p>
+              <p class="text-xl m-0 pt-2" style="color: var(--color-muted);">{{ $t('auth.sign_in.subtitle') }}</p>
             </div>
           </template>
 
@@ -147,45 +147,45 @@ export default {
 
                 <!-- Campo de correo electrónico -->
                 <div class="field pb-2">
-                  <label for="username" class="block font-medium mb-2" style="color: var(--color-text-gray);">Correo electrónico</label>
+                  <label for="username" class="block font-medium mb-2" style="color: var(--color-text-gray);">{{ $t('auth.sign_in.email_label') }}</label>
                   <pv-input-text
                       id="username"
                       v-model="username"
                       :class="{'p-invalid': touched.username && !username}"
                       class="w-full"
-                      placeholder="Ingresa tu correo electrónico"
+                      :placeholder="$t('auth.sign_in.email_placeholder')"
                       autocomplete="email"
                       @blur="onUsernameBlur"
                   />
                   <small v-if="touched.username && !username" class="p-error block mt-2">
-                    El correo electrónico es obligatorio
+                    {{ $t('auth.sign_in.email_required') }}
                   </small>
                 </div>
 
                 <!-- Campo de contraseña -->
                 <div class="field mb-4">
-                  <label for="password" class="block font-medium mb-2" style="color: var(--color-text-gray);">Contraseña</label>
+                  <label for="password" class="block font-medium mb-2" style="color: var(--color-text-gray);">{{ $t('auth.sign_in.password_label') }}</label>
                   <pv-password
                       id="password"
                       v-model="password"
                       :class="{'p-invalid': touched.password && !password}"
                       class="w-full"
                       input-class="w-full"
-                      placeholder="Ingresa tu contraseña"
+                      :placeholder="$t('auth.sign_in.password_placeholder')"
                       :feedback="false"
                       toggleMask
                       autocomplete="current-password"
                       @blur="onPasswordBlur"
                   />
                   <small v-if="touched.password && !password" class="p-error block mt-2">
-                    La contraseña es obligatoria
+                    {{ $t('auth.sign_in.password_required') }}
                   </small>
                 </div>
 
                 <!-- Botón de inicio de sesión -->
                 <pv-button
                     type="submit"
-                    label="Iniciar sesión"
+                    :label="$t('auth.sign_in.sign_in_button')"
                     icon="pi pi-sign-in"
                     class="w-full mt-2 p-button-primary"
                     :disabled="!username || !password"
@@ -199,10 +199,10 @@ export default {
           <template #footer>
             <!-- Link de registro -->
             <div class="text-center ">
-              <p class="mb-2" style="color: var(--color-muted);">¿Aún no tienes una cuenta?</p>
+              <p class="mb-2" style="color: var(--color-muted);">{{ $t('auth.sign_in.no_account') }}</p>
               <router-link to="/sign-up" class="no-underline">
                 <pv-button
-                    label="Crear cuenta"
+                    :label="$t('auth.sign_in.create_account')"
                     icon="pi pi-user-plus"
                     class="p-button-outlined w-full"
                     style="border-color: var(--color-primary); color: var(--color-primary);"
