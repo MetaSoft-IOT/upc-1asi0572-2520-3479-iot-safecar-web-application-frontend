@@ -2,6 +2,10 @@ import {createRouter, createWebHistory} from "vue-router";
 import SignInComponent from "@/safecar/security/pages/sign-in.component.vue";
 import SignUpComponent from "@/safecar/security/pages/sign-up.component.vue";
 import LayoutSafeCarComponent from "@/public/pages/layout-safe-car.component.vue";
+import servicesRequestManagementComponent
+    from "@/safecar/service-requests/pages/services-request-management.component.vue";
+import serviceHistoryManagementComponent
+    from "@/safecar/service-history/pages/service-history-management.component.vue";
 
 
 
@@ -28,11 +32,21 @@ const router = createRouter({
             meta: { title: 'Registro de Taller'}
         },
 
+
         {
             path: '/safe-car', name: 'safe-car', component: LayoutSafeCarComponent, meta: {title: 'SafeCar'},
             children: [
                 {
-
+                    path: 'mechanic/service-request',
+                    name: 'mechanic-service-request',
+                    component: servicesRequestManagementComponent,
+                    meta: { title: 'Solicitudes de Servicio' }
+                },
+                {
+                    path: 'mechanic/service-history',
+                    name: 'mechanic-service-history',
+                    component: serviceHistoryManagementComponent,
+                    meta: { title: 'Historial de Servicio' }
                 }
             ]
         }
