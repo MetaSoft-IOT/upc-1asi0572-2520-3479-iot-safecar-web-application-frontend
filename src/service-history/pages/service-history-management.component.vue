@@ -12,33 +12,9 @@ export default {
 
       itemsArray:[],
 
-      columns: [
-        { field: 'vehiclePlate', header: 'Placa', sortable: true, style: 'width: 120px;' },
-        { field: 'vehicleBrand', header: 'Vehículo', sortable: true, style: 'width: 180px;' },
-        { field: 'ownerName', header: 'Propietario', sortable: true, style: 'width: 180px;' },
-        { field: 'serviceType', header: 'Tipo de Servicio', sortable: true, style: 'width: 200px;' },
-        { field: 'serviceDate', header: 'Fecha Servicio', sortable: true, template: 'serviceDate', style: 'width: 140px;' },
-        { field: 'mileageKm', header: 'Kilometraje', sortable: true, template: 'mileage', style: 'width: 120px;' },
-        { field: 'serviceCenter', header: 'Centro de Servicio', sortable: true, style: 'width: 200px;' },
-      ],
-
       globalFilterValue: '', // Valor del filtro global de búsqueda
       selectedDate: null, // Fecha seleccionada en el filtro
       selectedServiceType: null, // Tipo de servicio seleccionado en el filtro
-      serviceTypeOptions: [      // Opciones de tipo de servicio para el filtro
-        { label: 'Todos', value: null },
-        { label: 'Mantenimiento Preventivo', value: 'MANTENIMIENTO_PREVENTIVO' },
-        { label: 'Reparación Mayor', value: 'REPARACION_MAYOR' },
-        { label: 'Cambio de Aceite', value: 'CAMBIO_ACEITE' },
-        { label: 'Revisión Técnica', value: 'REVISION_TECNICA' },
-        { label: 'Diagnóstico', value: 'DIAGNOSTICO' },
-        { label: 'Reparación de Frenos', value: 'REPARACION_FRENOS' },
-      ],
-
-      title: {
-        singular: 'historial de servicio',
-        plural: 'historiales de servicio',
-      },
 
       loading: false,
 
@@ -46,6 +22,36 @@ export default {
   },
 
   computed: {
+    columns() {
+      return [
+        { field: 'vehiclePlate', header: this.$t('service_history.columns.plate'), sortable: true, style: 'width: 120px;' },
+        { field: 'vehicleBrand', header: this.$t('service_history.columns.vehicle'), sortable: true, style: 'width: 180px;' },
+        { field: 'ownerName', header: this.$t('service_history.columns.owner'), sortable: true, style: 'width: 180px;' },
+        { field: 'serviceType', header: this.$t('service_history.columns.service_type'), sortable: true, style: 'width: 200px;' },
+        { field: 'serviceDate', header: this.$t('service_history.columns.service_date'), sortable: true, template: 'serviceDate', style: 'width: 140px;' },
+        { field: 'mileageKm', header: this.$t('service_history.columns.mileage'), sortable: true, template: 'mileage', style: 'width: 120px;' },
+        { field: 'serviceCenter', header: this.$t('service_history.columns.service_center'), sortable: true, style: 'width: 200px;' },
+      ];
+    },
+    
+    serviceTypeOptions() {
+      return [
+        { label: this.$t('service_history.service_types.all'), value: null },
+        { label: this.$t('service_history.service_types.preventive_maintenance'), value: 'MANTENIMIENTO_PREVENTIVO' },
+        { label: this.$t('service_history.service_types.major_repair'), value: 'REPARACION_MAYOR' },
+        { label: this.$t('service_history.service_types.oil_change'), value: 'CAMBIO_ACEITE' },
+        { label: this.$t('service_history.service_types.technical_inspection'), value: 'REVISION_TECNICA' },
+        { label: this.$t('service_history.service_types.diagnosis'), value: 'DIAGNOSTICO' },
+        { label: this.$t('service_history.service_types.brake_repair'), value: 'REPARACION_FRENOS' },
+      ];
+    },
+
+    title() {
+      return {
+        singular: this.$t('service_history.title_singular'),
+        plural: this.$t('service_history.title_plural'),
+      };
+    },
     // Filtro combinado que aplica todos los filtros activos
     filteredItemsArray() {
       let filtered = [...this.itemsArray]; // Copia del array original para filtrar sin mutar el original
@@ -560,8 +566,8 @@ export default {
   <div class="h-full overflow-hidden flex flex-column p-4">
 
     <!-- Título de la página -->
-    <h2 class="text-3xl font-bold mb-2"> Historial de Servicios Vehiculares </h2>
-    <p> Registro completo de mantenimientos y reparaciones realizadas a los vehículos </p>
+    <h2 class="text-3xl font-bold mb-2">{{ $t('service_history.title') }}</h2>
+    <p>{{ $t('service_history.subtitle') }}</p>
 
     <data-manager
         :items="itemsArray"
@@ -579,10 +585,10 @@ export default {
         :show-action-buttons="true"
         :rows="10"
         :rows-per-page-options="[5, 10, 15, 20, 50]"
-        new-button-label="Nuevo Historial"
-        delete-button-label="Eliminar"
-        export-button-label="Exportar"
-        search-placeholder="Busca por placa, vehículo, propietario, tipo de servicio, centro..."
+        :new-button-label="$t('service_history.new_history')"
+        :delete-button-label="$t('service_history.delete')"
+        :export-button-label="$t('service_history.export')"
+        :search-placeholder="$t('service_history.search_placeholder')"
         @new-item-requested-manager="onNewItemRequested"
         @delete-selected-items-requested-manager="onDeleteSelectedItems"
         @delete-item-requested-manager="onDeleteItem"
@@ -601,21 +607,21 @@ export default {
               :options="serviceTypeOptions"
               option-label="label"
               option-value="value"
-              placeholder="Tipo: Todos"
+              :placeholder="$t('service_history.type_filter_placeholder')"
               class="flex-1 h-full"
           />
           <!-- Filtro por fecha -->
           <pv-calendar
               id="serviceDate"
               v-model="selectedDate"
-              placeholder="dd/mm/aaaa"
+              :placeholder="$t('common.date_format')"
               dateFormat="dd/mm/yy"
               show-icon
               class="flex-1 h-full"
           />
           <!-- Botón para limpiar filtros específicos -->
           <pv-button
-              label="Limpiar filtros"
+              :label="$t('service_history.clear_filters')"
               icon="pi pi-filter-slash"
               @click="onClearFilters()"
               class="p-button-secondary flex-shrink-0 h-full"
