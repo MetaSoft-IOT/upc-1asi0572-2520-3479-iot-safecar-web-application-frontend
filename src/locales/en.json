@@ -80,11 +80,14 @@
   "service_requests": {
     "title": "Service Request Management",
     "subtitle": "Manage customer appointments and automotive service requests",
+    "title_singular": "service request",
+    "title_plural": "service requests",
     "new_request": "New Request",
     "delete": "Delete",
     "export": "Export",
     "search_placeholder": "Search by customer, phone, plate, brand/model, service...",
     "clear_filters": "Clear filters",
+    "status_filter_placeholder": "Status: All",
     "columns": {
       "customer": "Customer",
       "phone": "Phone",
