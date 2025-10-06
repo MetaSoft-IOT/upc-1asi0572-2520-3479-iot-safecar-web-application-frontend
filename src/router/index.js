@@ -1,11 +1,11 @@
 import {createRouter, createWebHistory} from "vue-router";
-import SignInComponent from "@/safecar/security/pages/sign-in.component.vue";
-import SignUpComponent from "@/safecar/security/pages/sign-up.component.vue";
+import SignInComponent from "@/security/pages/sign-in.component.vue";
+import SignUpComponent from "@/security/pages/sign-up.component.vue";
 import LayoutSafeCarComponent from "@/public/pages/layout-safe-car.component.vue";
 import servicesRequestManagementComponent
-    from "@/safecar/service-requests/pages/services-request-management.component.vue";
+    from "@/service-requests/pages/services-request-management.component.vue";
 import serviceHistoryManagementComponent
-    from "@/safecar/service-history/pages/service-history-management.component.vue";
+    from "@/service-history/pages/service-history-management.component.vue";
 
 
 
@@ -14,11 +14,11 @@ const router = createRouter({
     routes: [
 
 
-        {path: '/:pathMatch(.*)*', redirect: '/safecar/sign-in'},
+        {path: '/:pathMatch(.*)*', redirect: '/sign-in'},
 
 
         {
-            path: '/safecar/sign-in',
+            path: '/sign-in',
             name: 'sign-in',
             component: SignInComponent,
             meta: { title: 'Login'}
@@ -26,7 +26,7 @@ const router = createRouter({
 
 
         {
-            path: '/safecar/sign-up',
+            path: '/sign-up',
             name: 'sign-up',
             component: SignUpComponent,
             meta: { title: 'Registro de Taller'}
