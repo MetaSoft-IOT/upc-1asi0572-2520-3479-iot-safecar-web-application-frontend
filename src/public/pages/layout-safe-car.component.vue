@@ -1,13 +1,17 @@
 <script>
 import SidebarTrackerMobility from '../components/sidebar-safe-car.component.vue'
 import ToolbarTrackerMobility from '../components/toolbar-safe-car.component.vue'
+import SidebarSafeCar from "@/public/components/sidebar-safe-car.component.vue";
+import ToolbarSafeCar from "@/public/components/toolbar-safe-car.component.vue";
 
 export default {
   name: 'layout-safe-car',
 
   components: {
-    SidebarTrackerMobility,
-    ToolbarTrackerMobility
+    ToolbarSafeCar,
+    SidebarSafeCar
+    ,
+
   },
 
   created() {
@@ -19,12 +23,12 @@ export default {
 <template>
   <div class="layout-container">
     <!-- Sidebar fijo a la izquierda -->
-    <SidebarTrackerMobility />
+    <sidebar-safe-car />
 
     <!-- Contenedor principal que incluye toolbar y contenido -->
     <div class="main-content">
       <!-- Toolbar fijo en la parte superior -->
-      <ToolbarTrackerMobility />
+      <toolbar-safe-car />
 
       <!-- Área de contenido principal donde se renderizarán las rutas -->
       <main class="content-area">

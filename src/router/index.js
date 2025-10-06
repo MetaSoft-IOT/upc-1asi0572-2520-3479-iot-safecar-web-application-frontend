@@ -1,5 +1,7 @@
 import {createRouter, createWebHistory} from "vue-router";
 import SignInComponent from "@/safecar/security/pages/sign-in.component.vue";
+import SignUpComponent from "@/safecar/security/pages/sign-up.component.vue";
+import LayoutSafeCarComponent from "@/public/pages/layout-safe-car.component.vue";
 
 
 
@@ -13,10 +15,31 @@ const router = createRouter({
 
         {
             path: '/safecar/sign-in',
-            name: 'sing-in',
+            name: 'sign-in',
             component: SignInComponent,
             meta: { title: 'Login'}
         },
+
+
+        {
+            path: '/safecar/sign-up',
+            name: 'sign-up',
+            component: SignUpComponent,
+            meta: { title: 'Registro de Taller'}
+        },
+
+        {
+            path: '/safe-car', name: 'safe-car', component: LayoutSafeCarComponent, meta: {title: 'SafeCar'},
+            children: [
+                {
+
+                }
+            ]
+        }
+
+
+
+
 
 
         //

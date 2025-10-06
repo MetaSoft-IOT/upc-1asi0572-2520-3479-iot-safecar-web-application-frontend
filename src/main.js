@@ -2,10 +2,12 @@ import {createApp} from 'vue'
 //importar styles.css global de src/
 import './styles.css'
 
-
 import App from './App.vue'
 
-//PrimeVue
+// i18n para internacionalización
+import i18n from "./i18n.js";
+
+// PrimeVue y tema
 import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
 
@@ -98,6 +100,8 @@ app.use(pinia);
 // Use Router
 app.use(router);
 
+//use Vue i18n
+app.use(i18n)
 
 // Use PrimeVue - Configurado para modo claro forzado
 app.use(PrimeVue, {

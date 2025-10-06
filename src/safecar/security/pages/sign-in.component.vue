@@ -52,11 +52,11 @@ export default {
 
   <pv-toast></pv-toast>
 
-  <div class="login-container flex w-full h-screen p-4"  >
+  <div class="flex w-full h-screen p-4" style="background-color: var(--color-background);">
 
     <!-- ================================ PANEL 01  -->
     <div class="w-6 h-full flex flex-column justify-content-center align-items-center border-round-xl"
-         style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-hover) 100%);">
+         style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-hover) 100%); box-shadow: var(--shadow);">
 
       <!-- Main Content Card -->
       <pv-card class="w-full text-center bg-transparent border-none shadow-none">
@@ -67,11 +67,11 @@ export default {
 
             <!-- Title Section -->
             <div class="px-3">
-              <h1 class="text-xl md:text-4xl font-bold text-white line-height-3 m-0 pb-3">
+              <h1 class="text-xl md:text-4xl font-bold line-height-3 m-0 pb-3" style="color: var(--color-white);">
                 "Conectamos tecnología e innovación para revolucionar tu taller"
               </h1>
 
-              <p class="text-base text-white font-light m-0 line-height-3 ">
+              <p class="text-base font-light m-0 line-height-3" style="color: var(--color-white);">
                 Soluciones IoT inteligentes para la gestión moderna de servicios automotrices
               </p>
             </div>
@@ -89,7 +89,7 @@ export default {
 
             <!-- Technology Badges -->
             <div class="flex justify-content-center flex-wrap gap-3">
-              <pv-tag class="bg-white-alpha-20 text-white border-round-3xl px-4 py-2">
+              <pv-tag class="border-round-3xl px-4 py-2" style="background-color: rgba(255, 255, 255, 0.2); color: var(--color-white);">
                 <template #default>
                   <div class="flex align-items-center gap-2">
                     <i class="pi pi-wifi"></i>
@@ -127,15 +127,15 @@ export default {
 
       <div class="w-full max-w-28rem">
         <!-- Card del formulario -->
-        <pv-card class="shadow-3">
+        <pv-card style="background-color: var(--color-card-background); border: var(--border-width) solid var(--color-border-cards); box-shadow: var(--shadow-lg);">
           <!-- Header del formulario -->
 
           <template #header>
             <div class="text-center">
-              <h1 class="text-4xl font-bold m-0 pt-6">
-                <span style="color: var(--color-primary)">Safe</span><span style="color: var(--color-border-cards)">Car</span>
+              <h1 class="text-4xl font-bold m-0 pt-6" style="color: var(--color-text-gray);">
+                <span style="color: var(--color-primary);">Safe</span><span style="color: var(--color-border-cards);">Car</span>
               </h1>
-              <p class="text-xl text-600 m-0 pt-2">Acceso al sistema</p>
+              <p class="text-xl m-0 pt-2" style="color: var(--color-muted);">Acceso al sistema</p>
             </div>
           </template>
 
@@ -147,7 +147,7 @@ export default {
 
                 <!-- Campo de correo electrónico -->
                 <div class="field pb-2">
-                  <label for="username" class="block text-900 font-medium mb-2">Correo electrónico</label>
+                  <label for="username" class="block font-medium mb-2" style="color: var(--color-text-gray);">Correo electrónico</label>
                   <pv-input-text
                       id="username"
                       v-model="username"
@@ -164,7 +164,7 @@ export default {
 
                 <!-- Campo de contraseña -->
                 <div class="field mb-4">
-                  <label for="password" class="block text-900 font-medium mb-2">Contraseña</label>
+                  <label for="password" class="block font-medium mb-2" style="color: var(--color-text-gray);">Contraseña</label>
                   <pv-password
                       id="password"
                       v-model="password"
@@ -187,8 +187,9 @@ export default {
                     type="submit"
                     label="Iniciar sesión"
                     icon="pi pi-sign-in"
-                    class="w-full mt-4"
+                    class="w-full mt-2 p-button-primary"
                     :disabled="!username || !password"
+                    style="background-color: var(--color-primary); border-color: var(--color-primary);"
                 />
 
               </div>
@@ -197,13 +198,14 @@ export default {
 
           <template #footer>
             <!-- Link de registro -->
-            <div class="text-center mt-4">
-              <p class="text-600 mb-2">¿Aún no tienes una cuenta?</p>
-              <router-link to="/elixir-line/sign-up" class="no-underline">
+            <div class="text-center ">
+              <p class="mb-2" style="color: var(--color-muted);">¿Aún no tienes una cuenta?</p>
+              <router-link to="/safecar/sign-up" class="no-underline">
                 <pv-button
                     label="Crear cuenta"
                     icon="pi pi-user-plus"
                     class="p-button-outlined w-full"
+                    style="border-color: var(--color-primary); color: var(--color-primary);"
                 />
               </router-link>
             </div>
