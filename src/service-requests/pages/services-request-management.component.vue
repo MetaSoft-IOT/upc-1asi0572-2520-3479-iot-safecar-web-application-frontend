@@ -12,32 +12,9 @@ export default {
 
       itemsArray:[],
 
-      columns: [
-        { field: 'customerName', header: 'Cliente', sortable: true, style: 'width: 200px;' },
-        { field: 'customerPhone', header: 'Teléfono', sortable: true, style: 'width: 140px;' },
-        { field: 'vehiclePlate', header: 'Placa', sortable: true, style: 'width: 120px;' },
-        { field: 'vehicleBrand', header: 'Marca/Modelo', sortable: true, style: 'width: 180px;' },
-        { field: 'appointmentDate', header: 'Fecha Cita', sortable: true, template: 'appointmentDate', style: 'width: 140px;' },
-        { field: 'serviceReason', header: 'Servicio', sortable: true, style: 'width: 200px;' },
-        { field: 'status', header: 'Estado', sortable: true, template: 'status', style: 'width: 120px;' },
-      ],
-
       globalFilterValue: '', // Valor del filtro global de búsqueda
       selectedDate: null, // Fecha seleccionada en el filtro
       selectedStatus: null, // Estado seleccionado en el filtro
-      statusOptions: [      // Opciones de estado para el filtro
-        { label: 'Todos', value: null },
-        { label: 'Pendiente', value: 'PENDIENTE' },
-        { label: 'Confirmada', value: 'CONFIRMADA' },
-        { label: 'En Proceso', value: 'EN_PROCESO' },
-        { label: 'Completada', value: 'COMPLETADA' },
-        { label: 'Cancelada', value: 'CANCELADA' },
-      ],
-
-      title: {
-        singular: 'solicitud de servicio',
-        plural: 'solicitudes de servicio',
-      },
 
       loading: false,
 
@@ -45,6 +22,35 @@ export default {
   },
 
   computed: {
+    columns() {
+      return [
+        { field: 'customerName', header: this.$t('service_requests.columns.customer'), sortable: true, style: 'width: 200px;' },
+        { field: 'customerPhone', header: this.$t('service_requests.columns.phone'), sortable: true, style: 'width: 140px;' },
+        { field: 'vehiclePlate', header: this.$t('service_requests.columns.plate'), sortable: true, style: 'width: 120px;' },
+        { field: 'vehicleBrand', header: this.$t('service_requests.columns.brand_model'), sortable: true, style: 'width: 180px;' },
+        { field: 'appointmentDate', header: this.$t('service_requests.columns.appointment_date'), sortable: true, template: 'appointmentDate', style: 'width: 140px;' },
+        { field: 'serviceReason', header: this.$t('service_requests.columns.service'), sortable: true, style: 'width: 200px;' },
+        { field: 'status', header: this.$t('service_requests.columns.status'), sortable: true, template: 'status', style: 'width: 120px;' },
+      ];
+    },
+
+    statusOptions() {
+      return [
+        { label: this.$t('service_requests.status.all'), value: null },
+        { label: this.$t('service_requests.status.pending'), value: 'PENDIENTE' },
+        { label: this.$t('service_requests.status.confirmed'), value: 'CONFIRMADA' },
+        { label: this.$t('service_requests.status.in_progress'), value: 'EN_PROCESO' },
+        { label: this.$t('service_requests.status.completed'), value: 'COMPLETADA' },
+        { label: this.$t('service_requests.status.cancelled'), value: 'CANCELADA' },
+      ];
+    },
+
+    title() {
+      return {
+        singular: this.$t('service_requests.title_singular'),
+        plural: this.$t('service_requests.title_plural'),
+      };
+    },
     // Filtro combinado que aplica todos los filtros activos
     filteredItemsArray() {
       let filtered = [...this.itemsArray]; // Copia del array original para filtrar sin mutar el original
@@ -504,8 +510,8 @@ export default {
   <div class="h-full overflow-hidden flex flex-column p-4">
 
     <!-- Título de la página -->
-    <h2 class="text-3xl font-bold mb-2"> Gestión de Solicitudes de Servicio </h2>
-    <p> Administra las solicitudes de citas y servicios automotrices de los clientes </p>
+    <h2 class="text-3xl font-bold mb-2">{{ $t('service_requests.title') }}</h2>
+    <p>{{ $t('service_requests.subtitle') }}</p>
 
     <data-manager
         :items="itemsArray"
@@ -523,10 +529,10 @@ export default {
         :show-action-buttons="true"
         :rows="10"
         :rows-per-page-options="[5, 10, 15, 20, 50]"
-        new-button-label="Nueva Solicitud"
-        delete-button-label="Eliminar"
-        export-button-label="Exportar"
-        search-placeholder="Busca por cliente, teléfono, placa, marca/modelo, servicio..."
+        :new-button-label="$t('service_requests.new_request')"
+        :delete-button-label="$t('service_requests.delete')"
+        :export-button-label="$t('service_requests.export')"
+        :search-placeholder="$t('service_requests.search_placeholder')"
         @new-item-requested-manager="onNewItemRequested"
         @delete-selected-items-requested-manager="onDeleteSelectedItems"
         @delete-item-requested-manager="onDeleteItem"
@@ -545,21 +551,21 @@ export default {
               :options="statusOptions"
               option-label="label"
               option-value="value"
-              placeholder="Estado: Todos"
+              :placeholder="$t('service_requests.status_filter_placeholder')"
               class="flex-1 h-full"
           />
           <!-- Filtro por fecha -->
           <pv-calendar
               id="appointmentDate"
               v-model="selectedDate"
-              placeholder="dd/mm/aaaa"
+              :placeholder="$t('common.date_format')"
               dateFormat="dd/mm/yy"
               show-icon
               class="flex-1 h-full"
           />
           <!-- Botón para limpiar filtros específicos -->
           <pv-button
-              label="Limpiar filtros"
+              :label="$t('service_requests.clear_filters')"
               icon="pi pi-filter-slash"
               @click="onClearFilters()"
               class="p-button-secondary flex-shrink-0 h-full"
