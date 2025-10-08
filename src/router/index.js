@@ -2,10 +2,12 @@ import {createRouter, createWebHistory} from "vue-router";
 import SignInComponent from "@/security/pages/sign-in.component.vue";
 import SignUpComponent from "@/security/pages/sign-up.component.vue";
 import LayoutSafeCarComponent from "@/public/pages/layout-safe-car.component.vue";
-import servicesRequestManagementComponent
-    from "@/service-requests/pages/services-request-management.component.vue";
 import serviceHistoryManagementComponent
     from "@/service-history/pages/service-history-management.component.vue";
+import AppointmentRequestManagementComponent
+    from "@/service-requests/pages/appointment-request-management.component.vue";
+import AppointmentRequestDetailManagementComponent
+    from "@/service-requests/pages/appointment-request-detail-management.component.vue";
 
 
 
@@ -36,18 +38,30 @@ const router = createRouter({
         {
             path: '/safe-car', name: 'safe-car', component: LayoutSafeCarComponent, meta: {title: 'SafeCar'},
             children: [
+
+                // ============ Rutas de solicitud de servicio para el mecánico ============
                 {
                     path: 'mechanic/service-request',
-                    name: 'mechanic-service-request',
-                    component: servicesRequestManagementComponent,
+                    name: 'appointment-request',
+                    component: AppointmentRequestManagementComponent,
                     meta: { title: 'Solicitudes de Servicio' }
                 },
+                {
+                    path: 'mechanic/appointment-request-details',
+                    name:  'appointment-request-details',
+                    component: AppointmentRequestDetailManagementComponent,
+                    meta: { title: 'Detalles de Solicitud de Servicio' }
+                },
+                // ========================================================================
+
+                // ============ Rutas de historial de servicio para el mecánico ============
                 {
                     path: 'mechanic/service-history',
                     name: 'mechanic-service-history',
                     component: serviceHistoryManagementComponent,
                     meta: { title: 'Historial de Servicio' }
-                }
+                },
+
             ]
         }
 
