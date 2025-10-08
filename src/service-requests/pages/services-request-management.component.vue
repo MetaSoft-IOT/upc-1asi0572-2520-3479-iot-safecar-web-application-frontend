@@ -2,6 +2,7 @@
 
 import DataManager from "../../shared/components/data-manager.component.vue";
 import {AppointmentRequest, Customer, Vehicle, Appointment} from "../models/appointment-request.entity.js";
+import {AppointmentRequestApiService} from "@/service-requests/services/appointment-request-api.service.js";
 
 export default {
   name: 'services-request-management',
@@ -9,6 +10,9 @@ export default {
 
   data(){
     return {
+
+      // Servicio de API
+      appointmentRequestApiService: new AppointmentRequestApiService(),
 
       itemsArray:[],
 
@@ -280,13 +284,7 @@ export default {
       }
     },
 
-    // Función modular para validar respuesta del servidor
-    validateServerResponse(response, context = 'datos') {
-      if (!response || !response.hasOwnProperty('data') || !Array.isArray(response.data)) {
-        throw new Error(`Formato de ${context} inválido del servidor`);
-      }
-      return true;
-    },
+
 
     getAll() {
       this.loading = true;
@@ -491,11 +489,30 @@ export default {
           this.loading = false;
         }
       }, 800); // Simular 800ms de delay para mostrar el loading
+
+      this.appointmentRequestApiService.getAll().then(response => {
+
+        this.itemsArray = response.data.map(item => new AppointmentRequest(item));
+
+
+        console.log('Solicitudes de servicio cargadas:', this.itemsArray);
+
+
+      }).catch(error => {
+        this.itemsArray = []; // Limpiar datos en caso de error
+        this.handleServerError(error, 'las solicitudes de servicio');
+      }).finally(() => {
+        this.loading = false;
+      });
+
+
     }
 
   },
 
   created() {
+    this.appointmentRequestApiService = new AppointmentRequestApiService('/appointments')
+
     // Cargar datos al inicializar el componente
     this.getAll();
   }

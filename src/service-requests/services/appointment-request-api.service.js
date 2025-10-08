@@ -1,66 +1,32 @@
-// Servicio para gestión de solicitudes de servicio
-class SolicitudesService {
-  constructor() {
-    this.baseUrl = '/api/solicitudes'
-  }
+import axios from "axios";
 
-  async obtenerSolicitudes() {
-    try {
-      const response = await fetch(`${this.baseUrl}`)
-      return await response.json()
-    } catch (error) {
-      console.error('Error al obtener solicitudes:', error)
-      throw error
-    }
-  }
+const http = axios.create({baseURL: "https://my-json-server.typicode.com/MetaSoft-IOT/appointments-fake-api"});
 
-  async crearSolicitud(solicitud) {
-    try {
-      const response = await fetch(`${this.baseUrl}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(solicitud)
-      })
-      return await response.json()
-    } catch (error) {
-      console.error('Error al crear solicitud:', error)
-      throw error
-    }
-  }
+export class AppointmentRequestApiService {
 
-  async actualizarEstadoSolicitud(id, estado) {
-    try {
-      const response = await fetch(`${this.baseUrl}/${id}/estado`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ estado })
-      })
-      return await response.json()
-    } catch (error) {
-      console.error('Error al actualizar estado:', error)
-      throw error
+    constructor(_resourceEndpoint) {
+        this.resourceEndpoint = _resourceEndpoint;
     }
-  }
 
-  async asignarMecanico(solicitudId, mecanicoId) {
-    try {
-      const response = await fetch(`${this.baseUrl}/${solicitudId}/asignar`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ mecanicoId })
-      })
-      return await response.json()
-    } catch (error) {
-      console.error('Error al asignar mecánico:', error)
-      throw error
+    getAll() {
+        return http.get(`/${this.resourceEndpoint}`);
     }
-  }
+
+    getById(id) {
+        return http.get(`/${this.resourceEndpoint}/${id}`);
+    }
+
+    create(data) {
+        return http.post(`/${this.resourceEndpoint}`, data);
+    }
+
+    update(id, data) {
+        return http.put(`/${this.resourceEndpoint}/${id}`, data);
+    }
+
+    delete(id) {
+        return http.delete(`/${this.resourceEndpoint}/${id}`);
+    }
+
+
 }
-
-export default new SolicitudesService()
