@@ -1,7 +1,7 @@
 <script>
 
 import DataManager from "../../shared/components/data-manager.component.vue";
-import {AppointmentRequest, Customer, Vehicle, Appointment} from "../models/appointment-request.entity.js";
+import {AppointmentRequest, Customer, Vehicle, AppointmentRequestDetails} from "../models/appointment-request.entity.js";
 import {AppointmentRequestApiService} from "@/service-requests/services/appointment-request-api.service.js";
 
 export default {
@@ -289,214 +289,14 @@ export default {
     getAll() {
       this.loading = true;
       
-      // Simular delay de carga real
-      setTimeout(() => {
-        try {
-          // Datos mockeados para solicitudes de servicio
-          const mockData = [
-            {
-              id: 'req_001',
-              customer: new Customer({
-                fullName: 'Carlos Rodríguez López',
-                phone: '999-123-456',
-                email: 'carlos.rodriguez@email.com'
-              }),
-              vehicle: new Vehicle({
-                licensePlate: 'ABC-123',
-                brand: 'Toyota',
-                model: 'Corolla'
-              }),
-              appointment: new Appointment({
-                date: '2024-11-15',
-                time: '09:00',
-                serviceReason: 'Mantenimiento preventivo',
-                status: 'PENDIENTE'
-              })
-            },
-            {
-              id: 'req_002',
-              customer: new Customer({
-                fullName: 'Ana María Fernández',
-                phone: '987-654-321',
-                email: 'ana.fernandez@email.com'
-              }),
-              vehicle: new Vehicle({
-                licensePlate: 'XYZ-789',
-                brand: 'Honda',
-                model: 'Civic'
-              }),
-              appointment: new Appointment({
-                date: '2024-11-16',
-                time: '14:30',
-                serviceReason: 'Reparación de frenos',
-                status: 'CONFIRMADA'
-              })
-            },
-            {
-              id: 'req_003',
-              customer: new Customer({
-                fullName: 'Miguel Torres Sánchez',
-                phone: '955-888-777',
-                email: 'miguel.torres@email.com'
-              }),
-              vehicle: new Vehicle({
-                licensePlate: 'DEF-456',
-                brand: 'Nissan',
-                model: 'Sentra'
-              }),
-              appointment: new Appointment({
-                date: '2024-11-17',
-                time: '10:15',
-                serviceReason: 'Cambio de aceite',
-                status: 'EN_PROCESO'
-              })
-            },
-            {
-              id: 'req_004',
-              customer: new Customer({
-                fullName: 'Patricia Vega Cruz',
-                phone: '944-555-123',
-                email: 'patricia.vega@email.com'
-              }),
-              vehicle: new Vehicle({
-                licensePlate: 'GHI-321',
-                brand: 'Hyundai',
-                model: 'Elantra'
-              }),
-              appointment: new Appointment({
-                date: '2024-11-14',
-                time: '16:00',
-                serviceReason: 'Revisión técnica',
-                status: 'COMPLETADA'
-              })
-            },
-            {
-              id: 'req_005',
-              customer: new Customer({
-                fullName: 'Roberto Mendoza Villa',
-                phone: '933-222-444',
-                email: 'roberto.mendoza@email.com'
-              }),
-              vehicle: new Vehicle({
-                licensePlate: 'JKL-654',
-                brand: 'Chevrolet',
-                model: 'Spark'
-              }),
-              appointment: new Appointment({
-                date: '2024-11-18',
-                time: '11:30',
-                serviceReason: 'Reparación de motor',
-                status: 'CANCELADA'
-              })
-            },
-            {
-              id: 'req_006',
-              customer: new Customer({
-                fullName: 'Lucía Ramírez Herrera',
-                phone: '966-777-888',
-                email: 'lucia.ramirez@email.com'
-              }),
-              vehicle: new Vehicle({
-                licensePlate: 'MNO-987',
-                brand: 'Kia',
-                model: 'Rio'
-              }),
-              appointment: new Appointment({
-                date: '2024-11-19',
-                time: '08:45',
-                serviceReason: 'Alineación y balanceo',
-                status: 'PENDIENTE'
-              })
-            },
-            {
-              id: 'req_007',
-              customer: new Customer({
-                fullName: 'Fernando García Morales',
-                phone: '977-333-555',
-                email: 'fernando.garcia@email.com'
-              }),
-              vehicle: new Vehicle({
-                licensePlate: 'PQR-147',
-                brand: 'Volkswagen',
-                model: 'Polo'
-              }),
-              appointment: new Appointment({
-                date: '2024-11-20',
-                time: '13:15',
-                serviceReason: 'Cambio de llantas',
-                status: 'CONFIRMADA'
-              })
-            },
-            {
-              id: 'req_008',
-              customer: new Customer({
-                fullName: 'Carmen Silva Jiménez',
-                phone: '988-111-999',
-                email: 'carmen.silva@email.com'
-              }),
-              vehicle: new Vehicle({
-                licensePlate: 'STU-258',
-                brand: 'Ford',
-                model: 'Fiesta'
-              }),
-              appointment: new Appointment({
-                date: '2024-11-21',
-                time: '15:20',
-                serviceReason: 'Diagnóstico electrónico',
-                status: 'EN_PROCESO'
-              })
-            }
-          ];
-
-          // Mapear los datos mockeados a la estructura esperada por la tabla
-          this.itemsArray = mockData.map(item => {
-            // Crear el objeto AppointmentRequest para mantener la estructura del modelo
-            const request = new AppointmentRequest(item);
-            
-            // Agregar propiedades calculadas para la tabla (campos esenciales para resumen)
-            return {
-              ...request,
-              id: item.id,
-              // Campos esenciales del cliente
-              customerName: item.customer?.fullName || 'Cliente no especificado',
-              customerPhone: item.customer?.phone || 'N/A',
-              customerEmail: item.customer?.email || 'N/A',
-              
-              // Campos esenciales del vehículo
-              vehiclePlate: item.vehicle?.licensePlate || 'N/A',
-              vehicleBrand: item.vehicle ? `${item.vehicle.brand || ''} ${item.vehicle.model || ''}`.trim() : 'N/A',
-              
-              // Campos esenciales de la cita
-              appointmentDate: item.appointment?.date || '',
-              appointmentTime: item.appointment?.time || '',
-              serviceReason: item.appointment?.serviceReason || 'Servicio general',
-              status: item.appointment?.status || 'PENDIENTE',
-              
-              // Fecha normalizada para filtros
-              appointmentDateNormalized: this.normalizeDateForComparison(item.appointment?.date),
-              
-              // Mantener referencia al objeto completo para usar en detalles
-              fullData: item
-            };
-          });
-
-          console.log('Solicitudes de servicio procesadas (datos mockeados):', this.itemsArray);
-
-        } catch (error) {
-          this.itemsArray = []; // Limpiar datos en caso de error
-          this.handleServerError(error, 'las solicitudes de servicio');
-        } finally {
-          this.loading = false;
-        }
-      }, 800); // Simular 800ms de delay para mostrar el loading
-
       this.appointmentRequestApiService.getAll().then(response => {
 
+        console.log('Solicitudes de servicio cargadas desde API:', response);
+
+        // Mapear los datos de la API a la estructura esperada por la tabla
         this.itemsArray = response.data.map(item => new AppointmentRequest(item));
 
-
-        console.log('Solicitudes de servicio cargadas:', this.itemsArray);
-
+        console.log('Solicitudes de servicio cargadas desde API:', this.itemsArray);
 
       }).catch(error => {
         this.itemsArray = []; // Limpiar datos en caso de error
@@ -504,8 +304,6 @@ export default {
       }).finally(() => {
         this.loading = false;
       });
-
-
     }
 
   },
