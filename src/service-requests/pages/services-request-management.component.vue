@@ -244,6 +244,28 @@ export default {
       }
     },
 
+    // Función para obtener el nombre completo del cliente
+    getCustomerFullName(customer) {
+      if (!customer) return 'Cliente no especificado';
+      
+      const firstName = customer.firstName || '';
+      const lastName = customer.lastName || '';
+      const fullName = `${firstName} ${lastName}`.trim();
+      
+      return fullName || 'Cliente no especificado';
+    },
+
+    // Función para obtener marca y modelo del vehículo
+    getVehicleBrandModel(vehicle) {
+      if (!vehicle) return 'N/A';
+      
+      const brand = vehicle.brand || '';
+      const model = vehicle.model || '';
+      const brandModel = `${brand} ${model}`.trim();
+      
+      return brandModel || 'N/A';
+    },
+
     // Función modular para manejar errores de servidor
     handleServerError(error, context = 'datos') {
       console.error(`Error al cargar ${context}:`, error);
@@ -291,12 +313,45 @@ export default {
       
       this.appointmentRequestApiService.getAll().then(response => {
 
-        console.log('Solicitudes de servicio cargadas desde API:', response);
+        console.log('Raw API response:', response);
 
         // Mapear los datos de la API a la estructura esperada por la tabla
-        this.itemsArray = response.data.map(item => new AppointmentRequest(item));
+        this.itemsArray = response.data.map(item => {
+          // Crear el objeto AppointmentRequest desde los datos de la API
+          const request = new AppointmentRequest(item);
+          
+          // Agregar propiedades calculadas y aplanadas para la tabla
+          return {
+            ...request,
+            // ID para identificación única
+            id: item.appointmentId || item.id,
+            
+            // Campos aplanados del cliente para la tabla
+            customerName: this.getCustomerFullName(item.customer),
+            customerPhone: item.customer?.phoneNumber || 'N/A',
+            customerEmail: item.customer?.email || 'N/A',
+            
+            // Campos aplanados del vehículo para la tabla
+            vehiclePlate: item.vehicle?.licensePlate || 'N/A',
+            vehicleBrand: this.getVehicleBrandModel(item.vehicle),
+            
+            // Campos aplanados de la cita para la tabla
+            appointmentDate: item.appointmentRequest?.scheduledDate || '',
+            appointmentTime: item.appointmentRequest?.startTime || '',
+            serviceReason: item.appointmentRequest?.requestedService || 'Servicio general',
+            
+            // Estado directamente del item
+            status: item.status || 'PENDIENTE',
+            
+            // Fecha normalizada para filtros
+            appointmentDateNormalized: this.normalizeDateForComparison(item.appointmentRequest?.scheduledDate),
+            
+            // Mantener referencia al objeto completo para operaciones detalladas
+            fullData: item
+          };
+        });
 
-        console.log('Solicitudes de servicio cargadas desde API:', this.itemsArray);
+        console.log('Mapped items for table:', this.itemsArray);
 
       }).catch(error => {
         this.itemsArray = []; // Limpiar datos en caso de error
