@@ -17,15 +17,6 @@ export default {
       // Servicio para obtener detalles de la cita por ID
       appointmentRequestApiService: new AppointmentRequestApiService('/appointments'),
 
-      statusOptions: [
-        { label: 'Todos', value: null },
-        { label: 'Pendiente', value: 'PENDIENTE' },
-        { label: 'Confirmada', value: 'CONFIRMADA' },
-        { label: 'En Proceso', value: 'EN_PROCESO' },
-        { label: 'Completada', value: 'COMPLETADA' },
-        { label: 'Cancelada', value: 'CANCELADA' }
-      ],
-
       mechanicsArray: [],
 
       // Item de la cita obtenido de la API
@@ -38,14 +29,30 @@ export default {
       
       // Progreso de carga
       loadingStep: 0,
-      loadingSteps: [
-        { icon: 'pi-file-o', label: 'Datos de la cita' },
-        { icon: 'pi-users', label: 'Información del cliente' },
-        { icon: 'pi-car', label: 'Detalles del vehículo' },
-        { icon: 'pi-cog', label: 'Información del servicio' }
-      ],
 
     };
+  },
+
+  computed: {
+    statusOptions() {
+      return [
+        { label: this.$t('appointment_detail.status.all'), value: null },
+        { label: this.$t('appointment_detail.status.pending'), value: 'PENDIENTE' },
+        { label: this.$t('appointment_detail.status.confirmed'), value: 'CONFIRMADA' },
+        { label: this.$t('appointment_detail.status.in_progress'), value: 'EN_PROCESO' },
+        { label: this.$t('appointment_detail.status.completed'), value: 'COMPLETADA' },
+        { label: this.$t('appointment_detail.status.cancelled'), value: 'CANCELADA' }
+      ];
+    },
+
+    loadingSteps() {
+      return [
+        { icon: 'pi-file-o', label: this.$t('appointment_detail.loading.steps.appointment_data') },
+        { icon: 'pi-users', label: this.$t('appointment_detail.loading.steps.customer_info') },
+        { icon: 'pi-car', label: this.$t('appointment_detail.loading.steps.vehicle_details') },
+        { icon: 'pi-cog', label: this.$t('appointment_detail.loading.steps.service_info') }
+      ];
+    }
   },
 
 
@@ -53,13 +60,13 @@ export default {
 
     onDownloadDocument (payload) {
       // Lógica para descargar documento
-      console.log(`Descargar documento: ${payload.type} para la cita ${payload.item.id}`);
+      console.log(this.$t('appointment_detail.actions.download_document', { type: payload.type, id: payload.item.id }));
       // Aquí iría la lógica real de descarga
     },
 
     // Formatear fecha para mostrar
     formatDate(dateString) {
-      if (!dateString) return 'No disponible';
+      if (!dateString) return this.$t('common.na');
       
       try {
         // Manejar diferentes formatos de fecha de entrada
@@ -81,7 +88,7 @@ export default {
         }
         
         // Verificar que la fecha sea válida
-        if (isNaN(dateToFormat.getTime())) return 'Fecha inválida';
+        if (isNaN(dateToFormat.getTime())) return this.$t('common.na');
         
         // Formatear como dd/mm/aaaa usando los métodos locales
         const day = dateToFormat.getDate().toString().padStart(2, '0');
@@ -91,7 +98,7 @@ export default {
         return `${day}/${month}/${year}`;
       } catch (error) {
         console.error('Error al formatear fecha:', error);
-        return 'Fecha inválida';
+        return this.$t('common.na');
       }
     },
 
@@ -127,7 +134,7 @@ export default {
           console.error('Error al obtener detalles de la cita:', error);
           this.isLoading = false;
           this.hasError = true;
-          this.errorMessage = 'Error al cargar los detalles de la cita. Por favor, intente nuevamente.';
+          this.errorMessage = this.$t('appointment_detail.error.load_details');
         });
 
     },
@@ -151,7 +158,7 @@ export default {
     // Obtener lista de mecánicos disponibles (mock por ahora)
     getAllMechanics() {
       // Lógica para obtener lista de mecánicos activos
-      console.log('Obtener lista de mecánicos disponibles');
+      console.log(this.$t('appointment_detail.mechanics.get_available'));
       
       // Mock data para mecánicos
       this.mechanicsArray = [
@@ -181,7 +188,7 @@ export default {
         }
       ];
 
-      console.log('Lista de mecánicos obtenida:', this.mechanicsArray);
+      console.log(this.$t('appointment_detail.mechanics.list_obtained'), this.mechanicsArray);
     },
 
     // Manejar actualizaciones de la cita desde componentes hijos
@@ -192,8 +199,8 @@ export default {
       // Opcional: mostrar mensaje de éxito
       this.$toast?.add({
         severity: 'success',
-        summary: 'Cita Actualizada',
-        detail: 'Los datos de la cita han sido actualizados correctamente',
+        summary: this.$t('appointment_detail.success.updated'),
+        detail: this.$t('appointment_detail.success.updated_message'),
         life: 3000
       });
     },
@@ -215,7 +222,7 @@ export default {
       this.getAppointmentDetailsById(appointmentId);
     } else {
       this.hasError = true;
-      this.errorMessage = 'ID de cita no proporcionado en la URL.';
+      this.errorMessage = this.$t('appointment_detail.error.no_id');
     }
 
     // Cargar lista de mecánicos disponibles
@@ -239,11 +246,11 @@ export default {
           :to="{ name: 'appointment-request' }"
           class="font-bold text-gray-900 no-underline hover:underline cursor-pointer"
       >
-        Solicitudes de Servicio
+        {{ $t('appointment_detail.breadcrumb.service_requests') }}
       </router-link>
       <span class="text-gray-500 font-bold"> / </span>
       <span class="text-blue-700 font-bold hover:underline cursor-pointer">
-        detalle de cita
+        {{ $t('appointment_detail.breadcrumb.appointment_detail') }}
       </span>
     </div>
 
@@ -251,12 +258,12 @@ export default {
     <div class="flex align-content-center justify-content-between  mt-4 mb-2" v-if="item">
       <!-- Izquierda -->
       <h2 class="text-2xl xl:font-bold font-extrabold text-gray-900">
-        Código de cita: <span class="text-blue-700 xl:font-bold "> {{ item.appointmentId || 'No disponible' }}</span>
+        {{ $t('appointment_detail.appointment_code') }} <span class="text-blue-700 xl:font-bold "> {{ item.appointmentId || $t('common.na') }}</span>
       </h2>
 
       <!-- Derecha -->
       <span class="font-medium text-gray-900">
-        Fecha de solicitud: {{ formatDate(item.appointmentDetails?.requestDate) }}
+        {{ $t('appointment_detail.request_date') }} {{ formatDate(item.appointmentDetails?.requestDate) }}
       </span>
     </div>
 
@@ -274,8 +281,8 @@ export default {
 
         <!-- Contenido textual simple -->
         <div class="loading-text">
-          <h3 class="loading-title">Cargando cita de servicio</h3>
-          <p class="loading-subtitle">{{ loadingSteps[loadingStep]?.label || 'Preparando datos...' }}</p>
+          <h3 class="loading-title">{{ $t('appointment_detail.loading.title') }}</h3>
+          <p class="loading-subtitle">{{ loadingSteps[loadingStep]?.label || $t('common.loading') }}</p>
         </div>
       </div>
     </div>
