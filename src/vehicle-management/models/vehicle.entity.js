@@ -49,8 +49,8 @@ export class IoTDevice {
      * @param {string|Date|null} [options.installationDate=null] - Date when the device was installed
      * @param {string|Date|null} [options.lastMaintenance=null] - Date of last device maintenance
      * @param {boolean} [options.isActive=false] - Whether the device is currently active
-     * @param {number|null} [options.signalStrength=null] - Signal strength percentage (0-100)
-     * @param {number|null} [options.dataFrequency=null] - Data transmission frequency in seconds
+     * @param {number|null} [options.signalStrength=null] - Signal strength in dBm
+     * @param {string|null} [options.dataFrequency=null] - Data transmission frequency (e.g., "10s")
      * @param {string|null} [options.installationNotes=null] - Additional notes about installation
      */
     constructor({
@@ -108,14 +108,14 @@ export class IoTDevice {
         this.isActive = isActive;
         
         /**
-         * Signal strength percentage (0-100)
+         * Signal strength in dBm
          * @type {number|null}
          */
         this.signalStrength = signalStrength;
         
         /**
-         * Data transmission frequency in seconds
-         * @type {number|null}
+         * Data transmission frequency (e.g., "10s")
+         * @type {string|null}
          */
         this.dataFrequency = dataFrequency;
         
