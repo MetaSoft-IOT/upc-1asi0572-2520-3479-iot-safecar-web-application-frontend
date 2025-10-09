@@ -23,6 +23,14 @@
     "logout": "Cerrar Sesión",
     "created_success": "Sidebar creado de manera exitosa"
   },
+  "toolbar": {
+    "language_switch": {
+      "tooltip": "Cambiar Idioma",
+      "english": "Inglés",
+      "spanish": "Español"
+    },
+    "created_success": "Toolbar creado de manera exitosa"
+  },
   "auth": {
     "sign_in": {
       "title": "Iniciar Sesión",
