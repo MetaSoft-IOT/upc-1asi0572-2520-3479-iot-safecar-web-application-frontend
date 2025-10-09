@@ -17,10 +17,10 @@ export default {
 
     items() {
       return [
-        { label: 'Dashboard', icon: 'pi pi-fw pi-chart-line', to: `/safe-car/mechanic/dashboard` },
-        { label: 'Solicitudes', icon: 'pi pi-fw pi-file-edit', to: `/safe-car/mechanic/service-request` },
-        { label: 'Historial', icon: 'pi pi-fw pi-users', to: `/safe-car/mechanic/service-history` },
-        { label: 'Vehículos', icon: 'pi pi-fw pi-chart-bar', to: `/safe-car/mechanic/vehicle-management` },
+        { label: this.$t('sidebar.menu.dashboard'), icon: 'pi pi-fw pi-chart-line', to: `/safe-car/mechanic/dashboard` },
+        { label: this.$t('sidebar.menu.appointments'), icon: 'pi pi-fw pi-file-edit', to: `/safe-car/mechanic/service-request` },
+        { label: this.$t('sidebar.menu.history'), icon: 'pi pi-fw pi-users', to: `/safe-car/mechanic/service-history` },
+        { label: this.$t('sidebar.menu.vehicles'), icon: 'pi pi-fw pi-chart-bar', to: `/safe-car/mechanic/vehicle-management` },
       ];
     }
   },
@@ -33,7 +33,7 @@ export default {
   },
 
   created() {
-    console.log('Sidebar creado de manera exitosa');
+    console.log(this.$t('sidebar.created_success'));
   }
 
 
@@ -48,7 +48,7 @@ export default {
       <div class="w-full sidebar-header justify-content-center align-items-center">
         <div class="sidebar-brand ">
           <i class="pi pi-mobile brand-icon"></i>
-          <h3 class="brand-title">SafeCar</h3>
+          <h3 class="brand-title">{{ $t('sidebar.brand_title') }}</h3>
         </div>
       </div>
 
@@ -80,7 +80,7 @@ export default {
           @click="logout"
         >
           <i class="pi pi-sign-out"></i>
-          <span>Cerrar Sesión</span>
+          <span>{{ $t('sidebar.logout') }}</span>
         </button>
       </div>
     </aside>
