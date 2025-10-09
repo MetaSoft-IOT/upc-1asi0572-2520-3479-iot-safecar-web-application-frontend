@@ -23,6 +23,13 @@ const router = createRouter({
 
 
         {
+            path: '',
+            name: 'sign-in',
+            component: SignInComponent,
+            meta: { title: 'Login'}
+        },
+
+        {
             path: '/sign-in',
             name: 'sign-in',
             component: SignInComponent,
