@@ -9,6 +9,7 @@ import AppointmentRequestManagementComponent
 import AppointmentRequestDetailManagementComponent
     from "@/service-requests/pages/appointment-request-detail-management.component.vue";
 import DashboardManagementComponent from "@/dashboard/pages/dashboard-management.component.vue";
+import VehicleManagementComponent from "@/vehicle-management/pages/vehicle-management.component.vue";
 
 
 
@@ -38,7 +39,17 @@ const router = createRouter({
 
         {
             path: '/safe-car', name: 'safe-car', component: LayoutSafeCarComponent, meta: {title: 'SafeCar'},
+            redirect: { name: 'mechanic-dashboard' },
             children: [
+
+                // =================== Rutas de dashboard ejecutivo ========================
+                {
+                    path : 'mechanic/dashboard',
+                    name : 'mechanic-dashboard',
+                    component : DashboardManagementComponent,
+                    meta: { title: 'Dashboard Ejecutivo' }
+                },
+                // ========================================================================
 
                 // ============ Rutas de solicitud de servicio para el mecánico ============
                 {
@@ -64,15 +75,18 @@ const router = createRouter({
                 },
                 // =========================================================================
 
-
-                // =================== Rutas de dashboard ejecutivo ========================
+                // =================== Rutas para la gestion de vehículos ==================
                 {
-                    path : 'mechanic/dashboard',
-                    name : 'mechanic-dashboard',
-                    component : DashboardManagementComponent,
-                    meta: { title: 'Dashboard Ejecutivo' }
+                    path: 'mechanic/vehicle-management',
+                    name: 'vehicle-management',
+                    component: VehicleManagementComponent,
+                    meta: { title: 'Gestión de Vehículos' }
                 },
-                // ========================================================================
+                // =========================================================================
+
+
+
+
 
 
             ]
