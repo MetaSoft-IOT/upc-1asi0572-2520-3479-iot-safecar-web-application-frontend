@@ -12,6 +12,17 @@
     "settings": "Configuración",
     "logout": "Cerrar Sesión"
   },
+  "sidebar": {
+    "brand_title": "SafeCar",
+    "menu": {
+      "dashboard": "Panel Principal",
+      "appointments": "Citas",
+      "history": "Historial",
+      "vehicles": "Vehículos"
+    },
+    "logout": "Cerrar Sesión",
+    "created_success": "Sidebar creado de manera exitosa"
+  },
   "auth": {
     "sign_in": {
       "title": "Iniciar Sesión",

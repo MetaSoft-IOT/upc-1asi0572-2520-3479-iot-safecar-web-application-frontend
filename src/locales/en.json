@@ -12,6 +12,17 @@
     "settings": "Settings",
     "logout": "Logout"
   },
+  "sidebar": {
+    "brand_title": "SafeCar",
+    "menu": {
+      "dashboard": "Dashboard",
+      "appointments": "Appointments",
+      "history": "History",
+      "vehicles": "Vehicles"
+    },
+    "logout": "Sign Out",
+    "created_success": "Sidebar created successfully"
+  },
   "auth": {
     "sign_in": {
       "title": "Sign In",
