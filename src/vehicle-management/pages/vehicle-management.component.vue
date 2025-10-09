@@ -1,9 +1,12 @@
 <script>
 
+import DataManager from "../../shared/components/data-manager.component.vue";
+import {Vehicle} from "../models/vehicle.entity.js";
 import {VehicleApiService} from "@/vehicle-management/services/vehicle-api.service.js";
 
 export default {
   name: 'vehicle-management',
+  components: {DataManager},
 
   data() {
       return {
@@ -13,8 +16,8 @@ export default {
         itemsArray: [],
 
         globalFilterValue: '', // Valor del filtro global de búsqueda
-        selectedDate: null, // Fecha seleccionada en el filtro
         selectedStatus: null, // Estado seleccionado en el filtro
+        selectedFuelType: null, // Tipo de combustible seleccionado
 
         loading: false,
       }
@@ -22,71 +25,330 @@ export default {
 
   computed: {
     columns() {
+      const t = this.$t;
       return [
-        { field: 'customerName', header: this.$t('service_requests.columns.customer'), sortable: true, style: 'width: 200px;' },
-        { field: 'customerPhone', header: this.$t('service_requests.columns.phone'), sortable: true, style: 'width: 140px;' },
-        { field: 'vehiclePlate', header: this.$t('service_requests.columns.plate'), sortable: true, style: 'width: 120px;' },
-        { field: 'vehicleBrand', header: this.$t('service_requests.columns.brand_model'), sortable: true, style: 'width: 180px;' },
-        { field: 'appointmentDate', header: this.$t('service_requests.columns.appointment_date'), sortable: true, template: 'appointmentDate', style: 'width: 140px;' },
-        { field: 'serviceReason', header: this.$t('service_requests.columns.service'), sortable: true, style: 'width: 200px;' },
-        { field: 'status', header: this.$t('service_requests.columns.status'), sortable: true, template: 'status', style: 'width: 120px;' },
+        { field: 'licensePlate', header: t('vehicle_management.columns.license_plate'), sortable: true, style: 'width: 130px;' },
+        { field: 'vehicleBrandModel', header: t('vehicle_management.columns.vehicle'), sortable: true, style: 'width: 200px;' },
+        { field: 'ownerName', header: t('vehicle_management.columns.owner'), sortable: true, style: 'width: 180px;' },
+        { field: 'ownerPhone', header: t('vehicle_management.columns.contact'), sortable: true, style: 'width: 140px;' },
+        { field: 'currentMileage', header: t('vehicle_management.columns.mileage'), sortable: true, style: 'width: 120px;' },
+        { field: 'fuelLevel', header: t('vehicle_management.columns.fuel_level'), sortable: true, template: 'fuelLevel', style: 'width: 100px;' },
+        { field: 'vehicleStatus', header: t('vehicle_management.columns.status'), sortable: true, template: 'status', style: 'width: 120px;' },
+        { field: 'iotActiveStatus', header: t('vehicle_management.columns.iot_device'), sortable: true, template: 'iotStatus', style: 'width: 120px;' },
       ];
     },
 
     statusOptions() {
+      const t = this.$t;
       return [
-        { label: this.$t('service_requests.status.all'), value: null },
-        { label: this.$t('service_requests.status.pending'), value: 'PENDIENTE' },
-        { label: this.$t('service_requests.status.confirmed'), value: 'CONFIRMADA' },
-        { label: this.$t('service_requests.status.in_progress'), value: 'EN_PROCESO' },
-        { label: this.$t('service_requests.status.completed'), value: 'COMPLETADA' },
-        { label: this.$t('service_requests.status.cancelled'), value: 'CANCELADA' },
+        { label: t('vehicle_management.filters.all_status'), value: null },
+        { label: t('vehicle_management.status.active'), value: 'active' },
+        { label: t('vehicle_management.status.in_service'), value: 'in-service' },
+        { label: t('vehicle_management.status.inactive'), value: 'inactive' },
+        { label: t('vehicle_management.status.maintenance'), value: 'maintenance' },
+      ];
+    },
+
+    fuelTypeOptions() {
+      const t = this.$t;
+      return [
+        { label: t('vehicle_management.filters.all_fuel_types'), value: null },
+        { label: t('vehicle_management.fuel_types.gasoline'), value: 'gasoline' },
+        { label: t('vehicle_management.fuel_types.diesel'), value: 'diesel' },
+        { label: t('vehicle_management.fuel_types.hybrid'), value: 'hybrid' },
+        { label: t('vehicle_management.fuel_types.electric'), value: 'electric' },
       ];
     },
 
     title() {
+      const t = this.$t;
       return {
-        singular: this.$t('service_requests.title_singular'),
-        plural: this.$t('service_requests.title_plural'),
+        singular: t('vehicle_management.title_singular'),
+        plural: t('vehicle_management.title_plural'),
       };
     },
+
     // Filtro combinado que aplica todos los filtros activos
     filteredItemsArray() {
       let filtered = [...this.itemsArray]; // Copia del array original para filtrar sin mutar el original
 
-      // Filtro por búsqueda global (nombre de cliente, teléfono, placa, marca/modelo, servicio)
-      // Solo aplicar filtro si hay contenido real (no null, no undefined, no string vacío o solo espacios)
+      // Filtro por búsqueda global (placa, marca/modelo, propietario, teléfono)
       if (this.globalFilterValue && this.globalFilterValue.trim().length > 0) {
-        // Normalizar el término de búsqueda: quitar espacios extra y convertir a minúsculas
         const searchTerm = this.globalFilterValue.toLowerCase().trim().replace(/\s+/g, ' ');
-        filtered = filtered.filter(request =>
-            (request.customerName && request.customerName.toLowerCase().trim().replace(/\s+/g, ' ').includes(searchTerm)) ||
-            (request.customerPhone && request.customerPhone.toLowerCase().trim().replace(/\s+/g, ' ').includes(searchTerm)) ||
-            (request.vehiclePlate && request.vehiclePlate.toLowerCase().trim().replace(/\s+/g, ' ').includes(searchTerm)) ||
-            (request.vehicleBrand && request.vehicleBrand.toLowerCase().trim().replace(/\s+/g, ' ').includes(searchTerm)) ||
-            (request.serviceReason && request.serviceReason.toLowerCase().trim().replace(/\s+/g, ' ').includes(searchTerm))
+        filtered = filtered.filter(vehicle =>
+            (vehicle.licensePlate && vehicle.licensePlate.toLowerCase().trim().replace(/\s+/g, ' ').includes(searchTerm)) ||
+            (vehicle.vehicleBrandModel && vehicle.vehicleBrandModel.toLowerCase().trim().replace(/\s+/g, ' ').includes(searchTerm)) ||
+            (vehicle.ownerName && vehicle.ownerName.toLowerCase().trim().replace(/\s+/g, ' ').includes(searchTerm)) ||
+            (vehicle.ownerPhone && vehicle.ownerPhone.toLowerCase().trim().replace(/\s+/g, ' ').includes(searchTerm)) ||
+            (vehicle.vin && vehicle.vin.toLowerCase().includes(searchTerm))
         );
       }
 
       // Filtro por estado seleccionado
       if (this.selectedStatus) {
-        filtered = filtered.filter(request => request.status === this.selectedStatus);
+        filtered = filtered.filter(vehicle => vehicle.vehicleStatus === this.selectedStatus);
       }
 
-      // Filtro por fecha seleccionada (corregido para zona horaria)
-      if (this.selectedDate) {
-        const selectedDateStr = this.dateToComparableString(this.selectedDate);
-        if (selectedDateStr) {
-          filtered = filtered.filter(request => {
-            const requestDateStr = this.normalizeDateForComparison(request.appointmentDate);
-            return requestDateStr === selectedDateStr;
-          });
-        }
+      // Filtro por tipo de combustible
+      if (this.selectedFuelType) {
+        filtered = filtered.filter(vehicle => vehicle.fuelType === this.selectedFuelType);
       }
 
       return filtered;
     }
   },
+
+  methods: {
+
+    onNewItemRequested() {
+      console.log('Add new vehicle');
+      // Implement navigation to vehicle creation form
+    },
+
+    onDeleteSelectedItems(selectedItems) {
+      console.log('Delete selected vehicles:', selectedItems);
+      // Implement multiple deletion logic
+      selectedItems.forEach(item => {
+        const index = this.itemsArray.findIndex(vehicle => vehicle.id === item.id);
+        if (index > -1) {
+          this.itemsArray.splice(index, 1);
+        }
+      });
+    },
+
+    onDeleteItem(item) {
+      console.log('Delete vehicle:', item);
+      // Implement individual deletion logic
+      const index = this.itemsArray.findIndex(vehicle => vehicle.id === item.id);
+      if (index > -1) {
+        this.itemsArray.splice(index, 1);
+      }
+    },
+
+    onEditItem(item) {
+      console.log('Edit vehicle:', item);
+      // Implement navigation to vehicle editing form
+    },
+
+    onViewItem(item) {
+      console.log('View vehicle details:', item);
+      // Navigate to vehicle details view, passing vehicle data via route state
+      this.$router.push({
+        name: 'vehicle-details',
+        query: { id: item.vehicleId },
+        state: { vehicleData: item.fullData }  // Pass the complete vehicle data
+      });
+    },
+
+    onRowSelect(event) {
+      console.log('Row selected:', event);
+    },
+
+    onRowUnselect(event) {
+      console.log('Row unselected:', event);
+    },
+
+    onClearFilters() {
+      this.globalFilterValue = '';
+      this.selectedStatus = null;
+      this.selectedFuelType = null;
+    },
+
+    onGlobalFilterChange(value) {
+      this.globalFilterValue = value || '';
+    },
+
+    getStatusSeverity(status) {
+      switch (status) {
+        case 'active':
+          return 'success';
+        case 'in-service':
+          return 'info';
+        case 'maintenance':
+          return 'warn';
+        case 'inactive':
+          return 'danger';
+        default:
+          return 'info';
+      }
+    },
+
+    getIoTStatusSeverity(isActive) {
+      return isActive ? 'success' : 'danger';
+    },
+
+    getFuelLevelSeverity(fuelLevel) {
+      if (fuelLevel >= 50) return 'success';
+      if (fuelLevel >= 25) return 'warn';
+      return 'danger';
+    },
+
+    // Function to get owner full name
+    getOwnerFullName(owner) {
+      if (!owner) return this.$t('vehicle_management.messages.no_owner_specified');
+
+      const firstName = owner.firstName || '';
+      const lastName = owner.lastName || '';
+      const fullName = `${firstName} ${lastName}`.trim();
+
+      return fullName || this.$t('vehicle_management.messages.no_owner_specified');
+    },
+
+    // Function to get vehicle brand and model
+    getVehicleBrandModel(vehicle) {
+      if (!vehicle) return this.$t('vehicle_management.messages.na');
+
+      const brand = vehicle.brand || '';
+      const model = vehicle.model || '';
+      const subModel = vehicle.subModel || '';
+      
+      let result = `${brand} ${model}`.trim();
+      if (subModel) {
+        result += ` ${subModel}`;
+      }
+
+      return result || this.$t('vehicle_management.messages.na');
+    },
+
+
+    // Function to handle server errors
+    handleServerError(error, context = 'data') {
+      console.error(`Error loading ${context}:`, error);
+
+      let errorMessage = '';
+      let showToast = false;
+
+      if (error.response) {
+        const status = error.response.status;
+        showToast = true;
+        
+        if (status >= 500) {
+          errorMessage = this.$t('vehicle_management.errors.internal_server_error', { context });
+        } else if (status >= 400) {
+          errorMessage = this.$t('vehicle_management.errors.request_error', { context });
+        } else {
+          errorMessage = this.$t('vehicle_management.errors.server_error', { status, context });
+        }
+      } else if (error.request) {
+        showToast = true;
+        errorMessage = this.$t('vehicle_management.errors.connection_error', { context });
+      } else if (error.message && (error.message.includes('invalid') || error.message.includes('format'))) {
+        showToast = true;
+        errorMessage = this.$t('vehicle_management.errors.data_format_error', { message: error.message });
+      }
+      
+      if (showToast) {
+        this.$toast.add({
+          severity: 'error',
+          summary: this.$t('vehicle_management.errors.server_error_title'),
+          detail: errorMessage,
+          life: 7000
+        });
+      }
+    },
+
+
+
+    getAll() {
+      this.loading = true;
+
+      this.vehicleApiService.getAll().then(response => {
+
+        console.log('Raw API response:', response);
+        console.log('Response data structure:', response.data);
+
+        // Check if response has the expected structure and handle different formats
+        let vehicles = [];
+        
+        if (response.data?.vehicles && Array.isArray(response.data.vehicles)) {
+          // Expected structure: { vehicles: [...] }
+          vehicles = response.data.vehicles;
+        } else if (Array.isArray(response.data)) {
+          // Alternative structure: [...]
+          vehicles = response.data;
+        } else {
+          console.error('Unexpected API response structure:', response.data);
+          this.itemsArray = [];
+          this.$toast.add({
+            severity: 'warn',
+            summary: this.$t('vehicle_management.errors.data_format_issue_title'),
+            detail: this.$t('vehicle_management.errors.unexpected_data_format'),
+            life: 5000
+          });
+          return;
+        }
+
+        console.log('Vehicles array:', vehicles);
+
+        // Map API data to expected table structure
+        this.itemsArray = vehicles.map(item => {
+          // Create Vehicle object from API data
+          const vehicle = new Vehicle(item);
+
+          // Add calculated and flattened properties for the table
+          return {
+            ...vehicle,
+            // ID for unique identification
+            id: item.vehicleId || item.id,
+
+            // Flattened vehicle fields for the table
+            licensePlate: item.licensePlate || this.$t('vehicle_management.messages.na'),
+            vehicleBrandModel: this.getVehicleBrandModel(item),
+            currentMileage: item.currentMileage || 0,
+            fuelType: item.fuelType || this.$t('vehicle_management.messages.na'),
+
+            // Flattened owner fields for the table
+            ownerName: this.getOwnerFullName(item.owner),
+            ownerPhone: item.owner?.phoneNumber || this.$t('vehicle_management.messages.na'),
+            ownerEmail: item.owner?.email || this.$t('vehicle_management.messages.na'),
+
+            // Telemetry data for the table
+            fuelLevel: item.telemetry?.fuelLevel || 0,
+            engineTemperature: item.telemetry?.engineTemperature || 0,
+            batteryVoltage: item.telemetry?.batteryVoltage || 0,
+            lastUpdate: item.telemetry?.lastUpdate || null,
+
+            // Maintenance data for the table
+            vehicleStatus: item.maintenance?.vehicleStatus || 'active',
+            nextServiceDate: item.maintenance?.nextServiceDate || null,
+            lastServiceDate: item.maintenance?.lastServiceDate || null,
+
+            // IoT device status
+            iotActiveStatus: item.iotDevice?.isActive || false,
+            iotDeviceModel: item.iotDevice?.deviceModel || this.$t('vehicle_management.messages.na'),
+            signalStrength: item.iotDevice?.signalStrength || null,
+
+            // Analytics data
+            averageFuelConsumption: item.analytics?.averageFuelConsumption || null,
+            predictedMaintenanceRisk: item.analytics?.predictedMaintenanceRisk || null,
+
+            // Keep reference to complete object for detailed operations
+            fullData: item
+          };
+        });
+
+        console.log('Mapped items for table:', this.itemsArray);
+
+      }).catch(error => {
+        console.error('API Error:', error);
+        this.itemsArray = []; // Clear data on error
+        this.handleServerError(error, 'vehicles');
+      }).finally(() => {
+        this.loading = false;
+      });
+    },
+
+    // Mock data for development/testing
+
+
+  },
+
+  created() {
+    this.vehicleApiService = new VehicleApiService('/vehicles');
+
+    // Load data when component initializes
+    this.getAll();
+  }
 
 
 
@@ -95,6 +357,105 @@ export default {
 </script>
 
 <template>
+  <pv-toast />
+
+  <div class="h-full overflow-hidden flex flex-column p-4">
+
+    <!-- Page title -->
+    <h2 class="text-3xl font-bold mb-2">{{ $t('vehicle_management.title') }}</h2>
+    <p>{{ $t('vehicle_management.subtitle') }}</p>
+
+    <data-manager
+        :items="itemsArray"
+        :filtered-items="filteredItemsArray"
+        :global-filter-value="globalFilterValue"
+        :columns="columns"
+        :title="title"
+        :loading="loading"
+        :dynamic="true"
+        :show-new="false"
+        :show-delete="true"
+        :show-export="true"
+        :show-selection="true"
+        :show-actions="true"
+        :show-action-buttons="true"
+        :rows="10"
+        :rows-per-page-options="[5, 10, 15, 20, 50]"
+        :new-button-label="$t('vehicle_management.actions.add_vehicle')"
+        :delete-button-label="$t('vehicle_management.actions.delete')"
+        :export-button-label="$t('vehicle_management.actions.export')"
+        :search-placeholder="$t('vehicle_management.actions.search_placeholder')"
+        @new-item-requested-manager="onNewItemRequested"
+        @delete-selected-items-requested-manager="onDeleteSelectedItems"
+        @delete-item-requested-manager="onDeleteItem"
+        @edit-item-requested-manager="onEditItem"
+        @view-item-requested-manager="onViewItem"
+        @row-select="onRowSelect"
+        @row-unselect="onRowUnselect"
+        @global-filter-change="onGlobalFilterChange"
+        @clear-filters="onClearFilters"
+    >
+      <!-- Custom filters for status and fuel type -->
+      <template #filters="{ clearFilters }" >
+        <div class="flex align-items-center gap-2">
+          <pv-dropdown
+              v-model="selectedStatus"
+              :options="statusOptions"
+              option-label="label"
+              option-value="value"
+              :placeholder="$t('vehicle_management.filters.filter_by_status')"
+              class="flex-1 h-full"
+          />
+          <pv-dropdown
+              v-model="selectedFuelType"
+              :options="fuelTypeOptions"
+              option-label="label"
+              option-value="value"
+              :placeholder="$t('vehicle_management.filters.filter_by_fuel_type')"
+              class="flex-1 h-full"
+          />
+          <!-- Button to clear specific filters -->
+          <pv-button
+              :label="$t('vehicle_management.actions.clear_filters')"
+              icon="pi pi-filter-slash"
+              @click="onClearFilters()"
+              class="p-button-secondary flex-shrink-0 h-full"
+          />
+        </div>
+      </template>
+
+      <!-- Template for "status" field -->
+      <template #status="{ data }">
+        <pv-tag
+            :value="data.vehicleStatus"
+            :severity="getStatusSeverity(data.vehicleStatus)"
+            class="text-sm"
+        />
+      </template>
+
+      <!-- Template for "iotStatus" field -->
+      <template #iotStatus="{ data }">
+        <pv-tag
+            :value="data.iotActiveStatus ? $t('vehicle_management.iot_status.active') : $t('vehicle_management.iot_status.inactive')"
+            :severity="getIoTStatusSeverity(data.iotActiveStatus)"
+            class="text-sm"
+        />
+      </template>
+
+      <!-- Template for "fuelLevel" field -->
+      <template #fuelLevel="{ data }">
+        <div class="flex align-items-center gap-2">
+          <pv-tag
+              :value="`${data.fuelLevel}%`"
+              :severity="getFuelLevelSeverity(data.fuelLevel)"
+              class="text-sm"
+          />
+        </div>
+      </template>
+
+    </data-manager>
+
+  </div>
 
 </template>
 
