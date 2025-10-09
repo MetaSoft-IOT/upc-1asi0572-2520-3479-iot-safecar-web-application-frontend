@@ -35,6 +35,7 @@ import InputText from "primevue/inputtext";
 import InputNumber from "primevue/inputnumber";
 import Password from "primevue/password";
 import Menu from "primevue/menu";
+import Message from "primevue/message";
 import Rating from "primevue/rating";
 import Row from "primevue/row";
 import Drawer from "primevue/drawer";
@@ -44,9 +45,11 @@ import Toolbar from "primevue/toolbar";
 import TabList from "primevue/tablist";
 import Tab from "primevue/tab";
 import TabPanel from "primevue/tabpanel";
+import TabView from "primevue/tabview";
 
 
 import Toast from "primevue/toast";
+import Tooltip from "primevue/tooltip";
 
 
 //importado de manera local de "router/index.js" creado y ubicado en src
@@ -118,6 +121,9 @@ app.use(PrimeVue, {
     .use(DialogService)
     .use(ToastService);
 
+// Register PrimeVue directives
+app.directive('tooltip', Tooltip);
+
 
 
 
@@ -139,6 +145,7 @@ app.component('pv-button', Button)
     .component('pv-input-number', InputNumber)
     .component('pv-password', Password)
     .component('pv-menu', Menu)
+    .component('pv-message', Message)
     .component('pv-rating', Rating)
     .component('pv-row', Row)
     .component('pv-drawer', Drawer)
@@ -151,6 +158,7 @@ app.component('pv-button', Button)
     .component('pv-tab', Tab)
     .component('pv-tab-panel', TabPanel)
     .component('pv-tab-panels', TabPanels)
+    .component('pv-tab-view', TabView)
     .component('pv-data-view', DataView)
     .component('pv-accordion', Accordion)
     .component('pv-accordion-panel',AccordionPanel)
