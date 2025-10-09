@@ -200,7 +200,7 @@ export default {
             <!-- Link de registro -->
             <div class="text-center ">
               <p class="mb-2" style="color: var(--color-muted);">{{ $t('auth.sign_in.no_account') }}</p>
-              <router-link to="/sign-up" class="no-underline">
+              <router-link :to="{ name: 'sign-up' }" class="no-underline">
                 <pv-button
                     :label="$t('auth.sign_in.create_account')"
                     icon="pi pi-user-plus"
