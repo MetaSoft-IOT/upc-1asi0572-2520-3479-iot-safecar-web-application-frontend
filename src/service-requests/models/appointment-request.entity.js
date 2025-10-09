@@ -112,7 +112,7 @@ export class Vehicle {
    * @param {string|null} [params.vehicleId=null] - Unique vehicle identifier
    * @param {string|null} [params.licensePlate=null] - License plate number
    * @param {string|null} [params.brand=null] - Vehicle brand
-   * @param {string|null} [params.model=null] - Vehicle model
+   * @param {string|null} [params.model=null] - Vehicle models
    * @param {number|null} [params.year=null] - Manufacturing year
    * @param {string|null} [params.fuelType=null] - Fuel type (gasoline, diesel, hybrid, electric)
    * @param {number|null} [params.currentMileage=null] - Current mileage
@@ -132,7 +132,7 @@ export class Vehicle {
     this.licensePlate = licensePlate;
     /** @type {string|null} Vehicle brand */
     this.brand = brand;
-    /** @type {string|null} Vehicle model */
+    /** @type {string|null} Vehicle models */
     this.model = model;
     /** @type {number|null} Manufacturing year */
     this.year = year;

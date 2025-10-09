@@ -8,6 +8,7 @@ import AppointmentRequestManagementComponent
     from "@/service-requests/pages/appointment-request-management.component.vue";
 import AppointmentRequestDetailManagementComponent
     from "@/service-requests/pages/appointment-request-detail-management.component.vue";
+import DashboardManagementComponent from "@/dashboard/pages/dashboard-management.component.vue";
 
 
 
@@ -61,6 +62,18 @@ const router = createRouter({
                     component: serviceHistoryManagementComponent,
                     meta: { title: 'Historial de Servicio' }
                 },
+                // =========================================================================
+
+
+                // =================== Rutas de dashboard ejecutivo ========================
+                {
+                    path : 'mechanic/dashboard',
+                    name : 'mechanic-dashboard',
+                    component : DashboardManagementComponent,
+                    meta: { title: 'Dashboard Ejecutivo' }
+                },
+                // ========================================================================
+
 
             ]
         }
