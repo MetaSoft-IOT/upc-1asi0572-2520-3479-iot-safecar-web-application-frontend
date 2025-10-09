@@ -245,6 +245,336 @@
     "available": "Available:",
     "contact_info": "Contact us for more information about development"
   },
+  "vehicle_management": {
+    "title": "Vehicle Management",
+    "subtitle": "IoT devices monitoring and fleet analytics",
+    "title_singular": "vehicle",
+    "title_plural": "vehicles",
+    "page": {
+      "title": "Vehicle Management",
+      "description": "Monitor and manage your fleet of vehicles with real-time telemetry data",
+      "details_title": "Vehicle Details"
+    },
+    "titles": {
+      "vehicle": "Vehicle",
+      "vehicles": "Vehicles"
+    },
+    "loading": "Loading vehicles...",
+    "no_vehicles": "No vehicles found",
+
+    "actions": {
+      "add_vehicle": "Add Vehicle",
+      "delete": "Delete",
+      "export": "Export",
+      "search_placeholder": "Search by license plate, vehicle, owner, or contact...",
+      "clear_filters": "Clear Filters",
+      "back_to_management": "Back to Vehicle Management"
+    },
+    "filters": {
+      "all_status": "All Status",
+      "all_fuel_types": "All Fuel Types",
+      "filter_by_status": "Filter by status",
+      "filter_by_fuel_type": "Filter by fuel type"
+    },
+    "fuel_types": {
+      "gasoline": "Gasoline",
+      "diesel": "Diesel",
+      "hybrid": "Hybrid",
+      "electric": "Electric"
+    },
+    "iot_status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "messages": {
+      "na": "N/A",
+      "no_owner_specified": "No owner specified",
+      "notice": "Notice",
+      "loaded_from_list": "Vehicle details loaded from vehicle list",
+      "vehicle_loaded": "Vehicle Loaded",
+      "loaded_successfully": "Vehicle details loaded successfully",
+      "loading_details": "Loading vehicle details..."
+    },
+    "errors": {
+      "internal_server_error": "Internal server error loading {context}. Please contact administrator.",
+      "request_error": "Request error for {context}. Please check access permissions.",
+      "server_error": "Server error ({status}) loading {context}.",
+      "connection_error": "Could not connect to server to load {context}. Please check your internet connection.",
+      "data_format_error": "Server data format error: {message}",
+      "server_error_title": "Server Error",
+      "data_format_issue_title": "Data Format Issue",
+      "unexpected_data_format": "API returned unexpected data format",
+      "failed_to_load": "Failed to load vehicle details",
+      "error_title": "Error",
+      "vehicle_id_not_provided": "Vehicle ID not provided"
+    },
+    "columns": {
+      "license_plate": "License Plate",
+      "vehicle": "Vehicle",
+      "owner": "Owner",
+      "contact": "Contact",
+      "mileage": "Mileage (km)",
+      "fuel_level": "Fuel %",
+      "year": "Year",
+      "iot_device": "IoT Device",
+      "last_update": "Last Update",
+      "status": "Status"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "in_service": "In Service",
+      "maintenance": "Maintenance",
+      "retired": "RETIRED",
+      "all": "All"
+    },
+    "detail": {
+      "title": "Vehicle Details",
+      "loading": "Loading vehicle details...",
+      "error_loading": "Error Loading Vehicle Details",
+      "retry": "Retry",
+      "tabs": {
+        "details": "Details",
+        "vehicle_details": "Vehicle Details",
+        "telemetry": "Telemetry",
+        "analytics": "Analytics"
+      },
+      "vehicle_information": {
+        "title": "Vehicle Information",
+        "brand_model": "Brand & Model",
+        "license_plate": "License Plate",
+        "year": "Year",
+        "vin_number": "VIN Number",
+        "engine_type": "Engine Type",
+        "fuel_type": "Fuel Type",
+        "color": "Color",
+        "body_type": "Body Type",
+        "transmission": "Transmission",
+        "current_mileage": "Current Mileage",
+        "registration_country": "Registration Country",
+        "vehicle_status": "Vehicle Status"
+      },
+      "owner_information": {
+        "title": "Owner Information",
+        "full_name": "Full Name",
+        "email_address": "Email Address",
+        "phone_number": "Phone Number",
+        "ownership_type": "Ownership Type",
+        "address": "Address",
+        "registered_since": "Registered Since",
+        "preferred_workshop": "Preferred Workshop",
+        "no_owner_info": "No Owner Information",
+        "no_owner_details": "Owner details are not available for this vehicle."
+      },
+      "installation_workshop": {
+        "title": "Installation Workshop",
+        "workshop_name": "Workshop Name",
+        "installation_technician": "Installation Technician",
+        "contact_number": "Contact Number",
+        "workshop_email": "Workshop Email",
+        "workshop_address": "Workshop Address",
+        "warranty_period": "Warranty Period",
+        "certification": "Certification",
+        "certified": "Certified",
+        "not_certified": "Not Certified",
+        "months": "months"
+      },
+      "telemetry": {
+        "title": "Real-time Telemetry",
+        "no_data": "No Telemetry Data",
+        "no_data_message": "Real-time telemetry data is not available for this vehicle.",
+        "engine_performance": {
+          "title": "Engine & Performance",
+          "rpm": "RPM",
+          "speed": "Speed",
+          "engine_temperature": "Engine Temperature",
+          "oil_pressure": "Oil Pressure",
+          "battery_voltage": "Battery Voltage",
+          "fuel_level": "Fuel Level",
+          "odometer_reading": "Odometer Reading",
+          "vehicle_heading": "Vehicle Heading",
+          "units": {
+            "rpm": "rpm",
+            "kmh": "km/h",
+            "celsius": "°C",
+            "psi": "PSI",
+            "volts": "V",
+            "percent": "%",
+            "km": "km",
+            "degrees": "degrees"
+          },
+          "status": {
+            "good": "Good",
+            "low": "Low",
+            "critical": "Critical",
+            "normal": "Normal",
+            "warning": "Warning",
+            "overheating": "Overheating",
+            "very_low": "Very Low"
+          }
+        },
+        "location_data": {
+          "title": "Location Data",
+          "latitude": "Latitude",
+          "longitude": "Longitude",
+          "altitude": "Altitude",
+          "gps_accuracy": "GPS Accuracy",
+          "units": {
+            "meters": "m"
+          }
+        },
+        "iot_device_status": {
+          "title": "IoT Device Status",
+          "device_model": "Device Model",
+          "firmware_version": "Firmware Version",
+          "signal_strength": "Signal Strength",
+          "data_frequency": "Data Frequency",
+          "installation_date": "Installation Date",
+          "last_communication": "Last Communication",
+          "device_id": "Device ID",
+          "connection_status": "Connection Status",
+          "active": "Active",
+          "inactive": "Inactive",
+          "connected": "Connected",
+          "units": {
+            "dbm": "dBm"
+          }
+        },
+        "diagnostics_alerts": {
+          "title": "Diagnostics & Alerts",
+          "obd_diagnostic_code": "OBD Diagnostic Code",
+          "active_alert_status": "Active Alert Status",
+          "last_telemetry_update": "Last Telemetry Update",
+          "total_alerts_count": "Total Alerts Count",
+          "fault_description": "Fault Description",
+          "system_status": "System Status",
+          "error_severity": "Error Severity",
+          "alert_active": "Alert Active",
+          "normal": "Normal",
+          "no_alerts": "No Alerts",
+          "no_faults_detected": "No faults detected",
+          "none": "None",
+          "error": "Error",
+          "critical": "Critical",
+          "high": "High",
+          "units": {
+            "alerts": "alerts"
+          }
+        }
+      },
+      "analytics": {
+        "title": "Vehicle Analytics",
+        "no_data": "No Analytics Data Available",
+        "no_data_message": "Analytics data will be displayed here once vehicle telemetry is collected.",
+        "fuel_efficiency": {
+          "title": "Fuel Efficiency Analytics",
+          "average_consumption": "Average Consumption",
+          "efficiency_rating": "Efficiency Rating",
+          "fuel_economy_trend": "Fuel Economy Trend",
+          "total_distance": "Total Distance",
+          "units": {
+            "l_per_100km": "L/100km",
+            "km": "km",
+            "days": "days"
+          },
+          "ratings": {
+            "excellent": "Excellent",
+            "good": "Good",
+            "average": "Average",
+            "high": "High"
+          },
+          "trends": {
+            "improving": "Improving",
+            "stable": "Stable",
+            "declining": "Declining"
+          }
+        },
+        "driving_behavior": {
+          "title": "Driving Behavior Analytics",
+          "harsh_braking_events": "Harsh Braking Events",
+          "rapid_acceleration_events": "Rapid Acceleration Events",
+          "average_speed": "Average Speed",
+          "max_speed_recorded": "Max Speed Recorded",
+          "total_drive_time": "Total Drive Time",
+          "idle_time_percentage": "Idle Time Percentage",
+          "eco_driving_score": "Eco-Driving Score",
+          "driver_score": "Driver Score",
+          "no_data": "No driving behavior data available",
+          "units": {
+            "kmh": "km/h",
+            "hours": "hours",
+            "percent": "%",
+            "score": "/100"
+          },
+          "scores": {
+            "excellent": "Excellent",
+            "good": "Good",
+            "fair": "Fair",
+            "poor": "Poor"
+          }
+        },
+        "predictive_maintenance": {
+          "title": "Predictive Maintenance",
+          "maintenance_risk_level": "Maintenance Risk Level",
+          "risk_classification": "Risk Classification",
+          "next_service_due": "Next Service Due",
+          "maintenance_priority": "Maintenance Priority",
+          "units": {
+            "percent": "%",
+            "days": "days"
+          },
+          "risk_levels": {
+            "low": "Low",
+            "medium": "Medium",
+            "high": "High"
+          },
+          "priorities": {
+            "normal": "Normal",
+            "medium": "Medium",
+            "high": "High"
+          }
+        },
+        "system_status": {
+          "title": "System Status",
+          "software_updates": "Software Updates",
+          "system_health": "System Health",
+          "data_quality_score": "Data Quality Score",
+          "last_analysis": "Last Analysis",
+          "update_available": "Update Available",
+          "up_to_date": "Up to Date",
+          "anomaly_detected": "Anomaly Detected",
+          "all_systems_normal": "All Systems Normal",
+          "recent": "Recent",
+          "units": {
+            "percent": "%"
+          }
+        },
+        "additional_analytics": {
+          "title": "Additional Analytics",
+          "co2_emissions": "CO2 Emissions",
+          "avg_trip_distance": "Avg Trip Distance",
+          "monthly_fuel_cost": "Monthly Fuel Cost",
+          "performance_score": "Performance Score",
+          "monthly_change": "Monthly Change",
+          "data_completeness": "Data Completeness",
+          "analysis_confidence": "Analysis Confidence",
+          "data_source": "Data Source",
+          "units": {
+            "kg_month": "kg/month",
+            "km": "km",
+            "usd": "USD",
+            "score": "/100",
+            "percent": "%"
+          },
+          "confidence_levels": {
+            "high": "High",
+            "medium": "Medium",
+            "low": "Low"
+          }
+        }
+      }
+    }
+  },
   "errors": {
     "server_error": "Server Error",
     "internal_server_error": "Internal server error loading {context}. Please contact the administrator.",

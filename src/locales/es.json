@@ -245,6 +245,336 @@
     "available": "Disponible:",
     "contact_info": "Contáctanos para más información sobre el desarrollo"
   },
+  "vehicle_management": {
+    "title": "Gestión de Vehículos",
+    "subtitle": "Monitoreo de dispositivos IoT y análisis de flota",
+    "title_singular": "vehículo",
+    "title_plural": "vehículos",
+    "page": {
+      "title": "Gestión de Vehículos",
+      "description": "Monitorea y gestiona tu flota de vehículos con datos de telemetría en tiempo real",
+      "details_title": "Detalles del Vehículo"
+    },
+    "titles": {
+      "vehicle": "Vehículo",
+      "vehicles": "Vehículos"
+    },
+    "loading": "Cargando vehículos...",
+    "no_vehicles": "No se encontraron vehículos",
+
+    "columns": {
+      "license_plate": "Placa",
+      "vehicle": "Vehículo",
+      "owner": "Propietario",
+      "contact": "Contacto",
+      "mileage": "Kilometraje (km)",
+      "fuel_level": "Combustible %",
+      "year": "Año",
+      "iot_device": "Dispositivo IoT",
+      "last_update": "Última Actualización",
+      "status": "Estado"
+    },
+    "status": {
+      "active": "Activo",
+      "inactive": "Inactivo",
+      "in_service": "En Servicio",
+      "maintenance": "Mantenimiento",
+      "retired": "RETIRADO",
+      "all": "Todos"
+    },
+    "detail": {
+      "title": "Detalles del Vehículo",
+      "loading": "Cargando detalles del vehículo...",
+      "error_loading": "Error al Cargar Detalles del Vehículo",
+      "retry": "Reintentar",
+      "tabs": {
+        "details": "Detalles",
+        "vehicle_details": "Detalles del Vehículo",
+        "telemetry": "Telemetría",
+        "analytics": "Análisis"
+      },
+      "vehicle_information": {
+        "title": "Información del Vehículo",
+        "brand_model": "Marca y Modelo",
+        "license_plate": "Placa",
+        "year": "Año",
+        "vin_number": "Número VIN",
+        "engine_type": "Tipo de Motor",
+        "fuel_type": "Tipo de Combustible",
+        "color": "Color",
+        "body_type": "Tipo de Carrocería",
+        "transmission": "Transmisión",
+        "current_mileage": "Kilometraje Actual",
+        "registration_country": "País de Registro",
+        "vehicle_status": "Estado del Vehículo"
+      },
+      "owner_information": {
+        "title": "Información del Propietario",
+        "full_name": "Nombre Completo",
+        "email_address": "Correo Electrónico",
+        "phone_number": "Número de Teléfono",
+        "ownership_type": "Tipo de Propiedad",
+        "address": "Dirección",
+        "registered_since": "Registrado Desde",
+        "preferred_workshop": "Taller Preferido",
+        "no_owner_info": "Sin Información del Propietario",
+        "no_owner_details": "Los detalles del propietario no están disponibles para este vehículo."
+      },
+      "installation_workshop": {
+        "title": "Taller de Instalación",
+        "workshop_name": "Nombre del Taller",
+        "installation_technician": "Técnico de Instalación",
+        "contact_number": "Número de Contacto",
+        "workshop_email": "Email del Taller",
+        "workshop_address": "Dirección del Taller",
+        "warranty_period": "Período de Garantía",
+        "certification": "Certificación",
+        "certified": "Certificado",
+        "not_certified": "No Certificado",
+        "months": "meses"
+      },
+      "telemetry": {
+        "title": "Telemetría en Tiempo Real",
+        "no_data": "Sin Datos de Telemetría",
+        "no_data_message": "Los datos de telemetría en tiempo real no están disponibles para este vehículo.",
+        "engine_performance": {
+          "title": "Motor y Rendimiento",
+          "rpm": "RPM",
+          "speed": "Velocidad",
+          "engine_temperature": "Temperatura del Motor",
+          "oil_pressure": "Presión de Aceite",
+          "battery_voltage": "Voltaje de Batería",
+          "fuel_level": "Nivel de Combustible",
+          "odometer_reading": "Lectura del Odómetro",
+          "vehicle_heading": "Dirección del Vehículo",
+          "units": {
+            "rpm": "rpm",
+            "kmh": "km/h",
+            "celsius": "°C",
+            "psi": "PSI",
+            "volts": "V",
+            "percent": "%",
+            "km": "km",
+            "degrees": "grados"
+          },
+          "status": {
+            "good": "Bueno",
+            "low": "Bajo",
+            "critical": "Crítico",
+            "normal": "Normal",
+            "warning": "Advertencia",
+            "overheating": "Sobrecalentamiento",
+            "very_low": "Muy Bajo"
+          }
+        },
+        "location_data": {
+          "title": "Datos de Ubicación",
+          "latitude": "Latitud",
+          "longitude": "Longitud",
+          "altitude": "Altitud",
+          "gps_accuracy": "Precisión GPS",
+          "units": {
+            "meters": "m"
+          }
+        },
+        "iot_device_status": {
+          "title": "Estado del Dispositivo IoT",
+          "device_model": "Modelo del Dispositivo",
+          "firmware_version": "Versión del Firmware",
+          "signal_strength": "Intensidad de Señal",
+          "data_frequency": "Frecuencia de Datos",
+          "installation_date": "Fecha de Instalación",
+          "last_communication": "Última Comunicación",
+          "device_id": "ID del Dispositivo",
+          "connection_status": "Estado de Conexión",
+          "active": "Activo",
+          "inactive": "Inactivo",
+          "connected": "Conectado",
+          "units": {
+            "dbm": "dBm"
+          }
+        },
+        "diagnostics_alerts": {
+          "title": "Diagnósticos y Alertas",
+          "obd_diagnostic_code": "Código de Diagnóstico OBD",
+          "active_alert_status": "Estado de Alerta Activa",
+          "last_telemetry_update": "Última Actualización de Telemetría",
+          "total_alerts_count": "Total de Alertas",
+          "fault_description": "Descripción de Falla",
+          "system_status": "Estado del Sistema",
+          "error_severity": "Severidad del Error",
+          "alert_active": "Alerta Activa",
+          "normal": "Normal",
+          "no_alerts": "Sin Alertas",
+          "no_faults_detected": "No se detectaron fallas",
+          "none": "Ninguno",
+          "error": "Error",
+          "critical": "Crítico",
+          "high": "Alto",
+          "units": {
+            "alerts": "alertas"
+          }
+        }
+      },
+      "analytics": {
+        "title": "Análisis del Vehículo",
+        "no_data": "Sin Datos de Análisis Disponibles",
+        "no_data_message": "Los datos de análisis se mostrarán aquí una vez que se recopile la telemetría del vehículo.",
+        "fuel_efficiency": {
+          "title": "Análisis de Eficiencia de Combustible",
+          "average_consumption": "Consumo Promedio",
+          "efficiency_rating": "Calificación de Eficiencia",
+          "fuel_economy_trend": "Tendencia de Economía de Combustible",
+          "total_distance": "Distancia Total",
+          "units": {
+            "l_per_100km": "L/100km",
+            "km": "km",
+            "days": "días"
+          },
+          "ratings": {
+            "excellent": "Excelente",
+            "good": "Bueno",
+            "average": "Promedio",
+            "high": "Alto"
+          },
+          "trends": {
+            "improving": "Mejorando",
+            "stable": "Estable",
+            "declining": "Empeorando"
+          }
+        },
+        "driving_behavior": {
+          "title": "Análisis de Comportamiento de Conducción",
+          "harsh_braking_events": "Eventos de Frenado Brusco",
+          "rapid_acceleration_events": "Eventos de Aceleración Rápida",
+          "average_speed": "Velocidad Promedio",
+          "max_speed_recorded": "Velocidad Máxima Registrada",
+          "total_drive_time": "Tiempo Total de Conducción",
+          "idle_time_percentage": "Porcentaje de Tiempo en Ralentí",
+          "eco_driving_score": "Puntuación de Conducción Ecológica",
+          "driver_score": "Puntuación del Conductor",
+          "no_data": "Sin datos de comportamiento de conducción disponibles",
+          "units": {
+            "kmh": "km/h",
+            "hours": "horas",
+            "percent": "%",
+            "score": "/100"
+          },
+          "scores": {
+            "excellent": "Excelente",
+            "good": "Bueno",
+            "fair": "Regular",
+            "poor": "Deficiente"
+          }
+        },
+        "predictive_maintenance": {
+          "title": "Mantenimiento Predictivo",
+          "maintenance_risk_level": "Nivel de Riesgo de Mantenimiento",
+          "risk_classification": "Clasificación de Riesgo",
+          "next_service_due": "Próximo Servicio Programado",
+          "maintenance_priority": "Prioridad de Mantenimiento",
+          "units": {
+            "percent": "%",
+            "days": "días"
+          },
+          "risk_levels": {
+            "low": "Bajo",
+            "medium": "Medio",
+            "high": "Alto"
+          },
+          "priorities": {
+            "normal": "Normal",
+            "medium": "Medio",
+            "high": "Alto"
+          }
+        },
+        "system_status": {
+          "title": "Estado del Sistema",
+          "software_updates": "Actualizaciones de Software",
+          "system_health": "Salud del Sistema",
+          "data_quality_score": "Puntuación de Calidad de Datos",
+          "last_analysis": "Último Análisis",
+          "update_available": "Actualización Disponible",
+          "up_to_date": "Actualizado",
+          "anomaly_detected": "Anomalía Detectada",
+          "all_systems_normal": "Todos los Sistemas Normales",
+          "recent": "Reciente",
+          "units": {
+            "percent": "%"
+          }
+        },
+        "additional_analytics": {
+          "title": "Análisis Adicionales",
+          "co2_emissions": "Emisiones de CO2",
+          "avg_trip_distance": "Distancia Promedio de Viaje",
+          "monthly_fuel_cost": "Costo Mensual de Combustible",
+          "performance_score": "Puntuación de Rendimiento",
+          "monthly_change": "Cambio Mensual",
+          "data_completeness": "Completitud de Datos",
+          "analysis_confidence": "Confianza del Análisis",
+          "data_source": "Fuente de Datos",
+          "units": {
+            "kg_month": "kg/mes",
+            "km": "km",
+            "usd": "USD",
+            "score": "/100",
+            "percent": "%"
+          },
+          "confidence_levels": {
+            "high": "Alto",
+            "medium": "Medio",
+            "low": "Bajo"
+          }
+        }
+      },
+      "actions": {
+        "add_vehicle": "Agregar Vehículo",
+        "delete": "Eliminar",
+        "export": "Exportar",
+        "search_placeholder": "Buscar por placa, vehículo, propietario o contacto...",
+        "clear_filters": "Limpiar Filtros",
+        "back_to_management": "Volver a Gestión de Vehículos"
+      },
+      "filters": {
+        "all_status": "Todos los Estados",
+        "all_fuel_types": "Todos los Tipos de Combustible",
+        "filter_by_status": "Filtrar por estado",
+        "filter_by_fuel_type": "Filtrar por tipo de combustible"
+      },
+      "fuel_types": {
+        "gasoline": "Gasolina",
+        "diesel": "Diésel",
+        "hybrid": "Híbrido",
+        "electric": "Eléctrico"
+      },
+      "iot_status": {
+        "active": "Activo",
+        "inactive": "Inactivo"
+      },
+      "messages": {
+        "na": "N/A",
+        "no_owner_specified": "Propietario no especificado",
+        "notice": "Aviso",
+        "loaded_from_list": "Detalles del vehículo cargados desde la lista de vehículos",
+        "vehicle_loaded": "Vehículo Cargado",
+        "loaded_successfully": "Detalles del vehículo cargados exitosamente",
+        "loading_details": "Cargando detalles del vehículo..."
+      },
+      "errors": {
+        "internal_server_error": "Error interno del servidor cargando {context}. Por favor contacte al administrador.",
+        "request_error": "Error de solicitud para {context}. Por favor verifique los permisos de acceso.",
+        "server_error": "Error del servidor ({status}) cargando {context}.",
+        "connection_error": "No se pudo conectar al servidor para cargar {context}. Por favor verifique su conexión a internet.",
+        "data_format_error": "Error de formato de datos del servidor: {message}",
+        "server_error_title": "Error del Servidor",
+        "data_format_issue_title": "Problema de Formato de Datos",
+        "unexpected_data_format": "La API devolvió un formato de datos inesperado",
+        "failed_to_load": "Error al cargar los detalles del vehículo",
+        "error_title": "Error",
+        "vehicle_id_not_provided": "ID del vehículo no proporcionado"
+      }
+    }
+  },
   "errors": {
     "server_error": "Error del servidor",
     "internal_server_error": "Error interno del servidor al cargar {context}. Por favor, contacte al administrador.",
