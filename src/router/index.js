@@ -10,6 +10,7 @@ import AppointmentRequestDetailManagementComponent
     from "@/service-requests/pages/appointment-request-detail-management.component.vue";
 import DashboardManagementComponent from "@/dashboard/pages/dashboard-management.component.vue";
 import VehicleManagementComponent from "@/vehicle-management/pages/vehicle-management.component.vue";
+import VehicleDetailManagementComponent from "@/vehicle-management/pages/vehicle-detail-management.component.vue";
 
 
 
@@ -81,6 +82,12 @@ const router = createRouter({
                     name: 'vehicle-management',
                     component: VehicleManagementComponent,
                     meta: { title: 'Gestión de Vehículos' }
+                },
+                {
+                    path: 'mechanic/vehicle-details',
+                    name: 'vehicle-details',
+                    component: VehicleDetailManagementComponent,
+                    meta: { title: 'Detalles del Vehículo' }
                 },
                 // =========================================================================
 
