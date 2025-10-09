@@ -33,12 +33,12 @@ export default {
           </div>
 
           <h2 class="text-2xl font-bold text-primary mb-2 line-height-3">
-            {{ moduleName }} en Desarrollo
+            {{ moduleName }} {{ $t('module_under_development.in_development') }}
           </h2>
 
           <div class="flex justify-content-center mb-3">
             <pv-tag severity="info" icon="pi pi-clock" class="px-2 py-1">
-              <span class="text-sm font-medium">En Desarrollo</span>
+              <span class="text-sm font-medium">{{ $t('module_under_development.development_tag') }}</span>
             </pv-tag>
           </div>
         </div>
@@ -46,7 +46,7 @@ export default {
         <!-- Progreso compacto -->
         <div v-if="showProgress" class="mb-4">
           <div class="flex justify-content-between align-items-center mb-2">
-            <span class="text-sm font-medium text-700">Progreso</span>
+            <span class="text-sm font-medium text-700">{{ $t('module_under_development.progress') }}</span>
             <pv-chip :label="`${progressPercentage}%`" class="bg-primary text-white text-xs" />
           </div>
           <pv-progress-bar
@@ -61,25 +61,25 @@ export default {
           <div class="col-6 mb-2">
             <div class="feature-item flex align-items-center p-2 bg-blue-50 border-round">
               <i class="pi pi-palette text-blue-500 mr-2"></i>
-              <span class="text-sm text-700">UI/UX</span>
+              <span class="text-sm text-700">{{ $t('module_under_development.features.ui_ux') }}</span>
             </div>
           </div>
           <div class="col-6 mb-2">
             <div class="feature-item flex align-items-center p-2 bg-green-50 border-round">
               <i class="pi pi-cog text-green-500 mr-2"></i>
-              <span class="text-sm text-700">Backend</span>
+              <span class="text-sm text-700">{{ $t('module_under_development.features.backend') }}</span>
             </div>
           </div>
           <div class="col-6 mb-2">
             <div class="feature-item flex align-items-center p-2 bg-purple-50 border-round">
               <i class="pi pi-shield text-purple-500 mr-2"></i>
-              <span class="text-sm text-700">Testing</span>
+              <span class="text-sm text-700">{{ $t('module_under_development.features.testing') }}</span>
             </div>
           </div>
           <div class="col-6 mb-2">
             <div class="feature-item flex align-items-center p-2 bg-orange-50 border-round">
               <i class="pi pi-link text-orange-500 mr-2"></i>
-              <span class="text-sm text-700">APIs</span>
+              <span class="text-sm text-700">{{ $t('module_under_development.features.apis') }}</span>
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@ export default {
           <div class="flex align-items-center justify-content-center p-3 bg-yellow-50 border-left-3 border-yellow-500 border-round">
             <i class="pi pi-calendar text-yellow-600 mr-2"></i>
             <span class="text-sm font-medium text-800">
-              Disponible: <strong>{{ estimatedDate }}</strong>
+              {{ $t('module_under_development.available') }} <strong>{{ estimatedDate }}</strong>
             </span>
           </div>
         </div>
@@ -98,7 +98,7 @@ export default {
         <div class="text-center pt-3 border-top-1 border-200">
           <p class="text-xs text-600 mb-0">
             <i class="pi pi-info-circle mr-1"></i>
-            Contáctanos para más información sobre el desarrollo
+            {{ $t('module_under_development.contact_info') }}
           </p>
         </div>
       </template>
