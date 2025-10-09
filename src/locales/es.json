@@ -168,6 +168,64 @@
     "km": "km",
     "na": "N/A"
   },
+  "dashboard": {
+    "title": "Panel Ejecutivo",
+    "subtitle": "Resumen de rendimiento y métricas clave",
+    "module_name": "Panel ejecutivo"
+  },
+  "appointment_detail": {
+    "breadcrumb": {
+      "service_requests": "Solicitudes de Servicio",
+      "appointment_detail": "detalle de cita"
+    },
+    "appointment_code": "Código de cita:",
+    "request_date": "Fecha de solicitud:",
+    "loading": {
+      "title": "Cargando cita de servicio",
+      "steps": {
+        "appointment_data": "Datos de la cita",
+        "customer_info": "Información del cliente",
+        "vehicle_details": "Detalles del vehículo",
+        "service_info": "Información del servicio"
+      }
+    },
+    "error": {
+      "load_details": "Error al cargar los detalles de la cita. Por favor, intente nuevamente.",
+      "no_id": "ID de cita no proporcionado en la URL."
+    },
+    "success": {
+      "updated": "Cita Actualizada",
+      "updated_message": "Los datos de la cita han sido actualizados correctamente"
+    },
+    "actions": {
+      "download_document": "Descargar documento: {type} para la cita {id}"
+    },
+    "status": {
+      "all": "Todos",
+      "pending": "Pendiente",
+      "confirmed": "Confirmada",
+      "in_progress": "En Proceso",
+      "completed": "Completada",
+      "cancelled": "Cancelada"
+    },
+    "mechanics": {
+      "get_available": "Obtener lista de mecánicos disponibles",
+      "list_obtained": "Lista de mecánicos obtenida:"
+    }
+  },
+  "module_under_development": {
+    "in_development": "en desarrollo",
+    "development_tag": "En Desarrollo",
+    "progress": "Progreso",
+    "features": {
+      "ui_ux": "UI/UX",
+      "backend": "Backend",
+      "testing": "Testing",
+      "apis": "APIs"
+    },
+    "available": "Disponible:",
+    "contact_info": "Contáctanos para más información sobre el desarrollo"
+  },
   "errors": {
     "server_error": "Error del servidor",
     "internal_server_error": "Error interno del servidor al cargar {context}. Por favor, contacte al administrador.",
