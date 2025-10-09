@@ -168,6 +168,64 @@
     "km": "km",
     "na": "N/A"
   },
+  "dashboard": {
+    "title": "Executive Dashboard",
+    "subtitle": "Performance overview and key metrics",
+    "module_name": "Executive dashboard"
+  },
+  "appointment_detail": {
+    "breadcrumb": {
+      "service_requests": "Service Requests",
+      "appointment_detail": "appointment detail"
+    },
+    "appointment_code": "Appointment Code:",
+    "request_date": "Request date:",
+    "loading": {
+      "title": "Loading service appointment",
+      "steps": {
+        "appointment_data": "Appointment data",
+        "customer_info": "Customer information",
+        "vehicle_details": "Vehicle details",
+        "service_info": "Service information"
+      }
+    },
+    "error": {
+      "load_details": "Error loading appointment details. Please try again.",
+      "no_id": "Appointment ID not provided in URL."
+    },
+    "success": {
+      "updated": "Appointment Updated",
+      "updated_message": "Appointment data has been updated successfully"
+    },
+    "actions": {
+      "download_document": "Download document: {type} for appointment {id}"
+    },
+    "status": {
+      "all": "All",
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "in_progress": "In Progress",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "mechanics": {
+      "get_available": "Get list of available mechanics",
+      "list_obtained": "Mechanics list obtained:"
+    }
+  },
+  "module_under_development": {
+    "in_development": "in development",
+    "development_tag": "In Development",
+    "progress": "Progress",
+    "features": {
+      "ui_ux": "UI/UX",
+      "backend": "Backend",
+      "testing": "Testing",
+      "apis": "APIs"
+    },
+    "available": "Available:",
+    "contact_info": "Contact us for more information about development"
+  },
   "errors": {
     "server_error": "Server Error",
     "internal_server_error": "Internal server error loading {context}. Please contact the administrator.",
