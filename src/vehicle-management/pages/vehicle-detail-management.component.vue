@@ -45,84 +45,72 @@ export default {
       this.$router.push({ name: 'vehicle-management' });
     },
 
-    async loadVehicleDetails() {
+    getVehicleDetailsById(vehicleId) {
+      // Lógica para obtener detalles del vehículo por ID
+      // Siguiendo el patrón implementado en service-request
+      console.log(`Obtener detalles del vehículo con ID: `, vehicleId);
+      
       this.loading = true;
       this.error = null;
+      
+      // Paso 1: Obtener todos los vehículos de la API
+      this.vehicleApiService.getAll().then(response => {
+        
+        // Paso 2: Filtrar el response para asignar el item correcto
+        // Se obtienen todos los recursos de vehículos y luego se filtra por vehicleId
+        // para quedarse solo con los datos del vehículo que se tiene que mostrar
+        const vehicleData = response.data.find(v => v.vehicleId === parseInt(vehicleId) || v.vehicleId === vehicleId);
 
-      try {
-        // First try to get from API
-        const response = await this.vehicleApiService.getById(this.vehicleId);
-        console.log('Vehicle details response:', response);
-        
-        // Handle different response structures
-        let vehicleData = null;
-        if (response.data?.vehicle) {
-          vehicleData = response.data.vehicle;
-        } else if (response.data) {
-          vehicleData = response.data;
-        }
-        
-        if (vehicleData) {
-          this.vehicle = new Vehicle(vehicleData);
-          console.log('Vehicle details loaded:', this.vehicle);
-        } else {
-          throw new Error('Vehicle data not found in response');
-        }
-      } catch (error) {
-        console.error('Error loading vehicle details:', error);
-        
-        // Fallback: try to get all vehicles and find the specific one
-        console.log('Attempting fallback: loading all vehicles to find specific one...');
-        
-        try {
-          const allVehiclesResponse = await this.vehicleApiService.getAll();
-          console.log('All vehicles response:', allVehiclesResponse);
+        this.vehicle = vehicleData ? new Vehicle(vehicleData) : null;
           
-          let vehicles = [];
-          if (allVehiclesResponse.data?.vehicles) {
-            vehicles = allVehiclesResponse.data.vehicles;
-          } else if (Array.isArray(allVehiclesResponse.data)) {
-            vehicles = allVehiclesResponse.data;
-          }
+        // Mostrar mensaje de éxito después de un breve delay
+        setTimeout(() => {
+          this.loading = false;
           
-          const foundVehicle = vehicles.find(v => v.vehicleId === this.vehicleId);
-          
-          if (foundVehicle) {
-            this.vehicle = new Vehicle(foundVehicle);
-            console.log('Vehicle found in list:', this.vehicle);
+          if (this.vehicle) {
+            console.log('Detalles del vehículo obtenidos:', this.vehicle);
             
             this.$toast.add({
-              severity: 'info',
-              summary: this.$t('vehicle_management.messages.notice'),
-              detail: this.$t('vehicle_management.messages.loaded_from_list'),
+              severity: 'success',
+              summary: this.$t('vehicle_management.messages.vehicle_loaded'),
+              detail: this.$t('vehicle_management.messages.loaded_successfully'),
               life: 3000
             });
           } else {
-            throw new Error(`Vehicle with ID ${this.vehicleId} not found`);
+            this.error = this.$t('vehicle_management.errors.failed_to_load');
+            console.error('Vehículo no encontrado con ID:', vehicleId);
           }
-        } catch (fallbackError) {
-          console.error('Fallback also failed:', fallbackError);
-          this.error = this.$t('vehicle_management.errors.failed_to_load');
-          this.$toast.add({
-            severity: 'error',
-            summary: this.$t('vehicle_management.errors.error_title'),
-            detail: this.$t('vehicle_management.errors.failed_to_load'),
-            life: 5000
-          });
-        }
-      } finally {
+        }, 300);
+      })
+      .catch(error => {
+        console.error('Error al obtener detalles del vehículo:', error);
         this.loading = false;
-      }
-    },
+        this.error = this.$t('vehicle_management.errors.failed_to_load');
+        
+        this.$toast.add({
+          severity: 'error',
+          summary: this.$t('vehicle_management.errors.error_title'),
+          detail: this.error,
+          life: 5000
+        });
+      });
+    }
 
   },
 
   created() {
-    // Get vehicle ID from route params or query
-    this.vehicleId = this.$route.query.id;
+    // Obtener ID del vehículo desde la ruta (siguiendo el patrón de service-requests)
+    const vehicleId = this.$route.query.id;
     
-    if (this.vehicleId) {
-      // Check if vehicle data was passed via route state
+    console.log(`Cargar detalles del vehículo con ID: ${vehicleId}`);
+
+    // Inicializar servicios
+    this.vehicleApiService = new VehicleApiService('/vehicles');
+    
+    if (vehicleId) {
+      this.vehicleId = vehicleId;
+      
+      // Check if vehicle data was passed via route state (optimización)
       const vehicleData = history.state?.vehicleData || this.$route.state?.vehicleData;
       
       if (vehicleData) {
@@ -131,14 +119,15 @@ export default {
         this.loading = false;
         
         this.$toast.add({
-          severity: 'success',
-          summary: this.$t('vehicle_management.messages.vehicle_loaded'),
-          detail: this.$t('vehicle_management.messages.loaded_successfully'),
+          severity: 'info',
+          summary: this.$t('vehicle_management.messages.notice'),
+          detail: this.$t('vehicle_management.messages.loaded_from_list'),
           life: 3000
         });
       } else {
         console.log('No vehicle data in route state, loading from API...');
-        this.loadVehicleDetails();
+        // Usar el método que sigue el patrón de service-requests
+        this.getVehicleDetailsById(vehicleId);
       }
     } else {
       this.error = this.$t('vehicle_management.errors.vehicle_id_not_provided');
@@ -151,7 +140,8 @@ export default {
       const newId = to.params.id || to.query.id;
       if (newId && newId !== this.vehicleId) {
         this.vehicleId = newId;
-        this.loadVehicleDetails();
+        // Usar el método que sigue el patrón de service-requests
+        this.getVehicleDetailsById(newId);
       }
     }
   }
