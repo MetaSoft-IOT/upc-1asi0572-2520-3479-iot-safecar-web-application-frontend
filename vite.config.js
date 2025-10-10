@@ -1,5 +1,4 @@
 import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
@@ -16,4 +15,21 @@ export default defineConfig({
             '@': fileURLToPath(new URL('./src', import.meta.url))
         },
     },
+    build: {
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    // Separa vue-i18n en su propio chunk para evitar problemas de linking
+                    'vue-i18n': ['vue-i18n']
+                }
+            }
+        }
+    },
+    // Optimizaciones para producción
+    define: {
+        // Elimina warnings de Vue i18n en producción
+        __VUE_I18N_FULL_INSTALL__: true,
+        __VUE_I18N_LEGACY_API__: false,
+        __INTLIFY_PROD_DEVTOOLS__: false,
+    }
 })
