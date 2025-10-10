@@ -65,7 +65,7 @@
         "address_placeholder": "Ej: Av. San Martín 254, Ica",
         "address_required": "La dirección es obligatoria",
         "email": "Email",
-        "email_placeholder": "contacto@taller.com",
+        "email_placeholder": "tu-email{'@'}dominio.com",
         "email_required": "Email obligatorio",
         "phone": "Teléfono",
         "phone_placeholder": "999 888 777",
@@ -281,6 +281,39 @@
       "maintenance": "Mantenimiento",
       "retired": "RETIRADO",
       "all": "Todos"
+    },
+    "actions": {
+      "add_vehicle": "Agregar Vehículo",
+      "delete": "Eliminar",
+      "export": "Exportar",
+      "search_placeholder": "Buscar por placa, vehículo, propietario o contacto...",
+      "clear_filters": "Limpiar Filtros",
+      "back_to_management": "Volver a Gestión de Vehículos"
+    },
+    "filters": {
+      "all_status": "Todos los Estados",
+      "all_fuel_types": "Todos los Tipos de Combustible",
+      "filter_by_status": "Filtrar por estado",
+      "filter_by_fuel_type": "Filtrar por tipo de combustible"
+    },
+    "fuel_types": {
+      "gasoline": "Gasolina",
+      "diesel": "Diésel",
+      "hybrid": "Híbrido",
+      "electric": "Eléctrico"
+    },
+    "iot_status": {
+      "active": "Activo",
+      "inactive": "Inactivo"
+    },
+    "messages": {
+      "na": "N/A",  
+      "no_owner_specified": "Propietario no especificado",
+      "notice": "Aviso",
+      "loaded_from_list": "Detalles del vehículo cargados desde la lista de vehículos",
+      "vehicle_loaded": "Vehículo Cargado",
+      "loaded_successfully": "Detalles del vehículo cargados exitosamente",
+      "loading_details": "Cargando detalles del vehículo..."
     },
     "detail": {
       "title": "Detalles del Vehículo",
@@ -526,39 +559,6 @@
             "low": "Bajo"
           }
         }
-      },
-      "actions": {
-        "add_vehicle": "Agregar Vehículo",
-        "delete": "Eliminar",
-        "export": "Exportar",
-        "search_placeholder": "Buscar por placa, vehículo, propietario o contacto...",
-        "clear_filters": "Limpiar Filtros",
-        "back_to_management": "Volver a Gestión de Vehículos"
-      },
-      "filters": {
-        "all_status": "Todos los Estados",
-        "all_fuel_types": "Todos los Tipos de Combustible",
-        "filter_by_status": "Filtrar por estado",
-        "filter_by_fuel_type": "Filtrar por tipo de combustible"
-      },
-      "fuel_types": {
-        "gasoline": "Gasolina",
-        "diesel": "Diésel",
-        "hybrid": "Híbrido",
-        "electric": "Eléctrico"
-      },
-      "iot_status": {
-        "active": "Activo",
-        "inactive": "Inactivo"
-      },
-      "messages": {
-        "na": "N/A",
-        "no_owner_specified": "Propietario no especificado",
-        "notice": "Aviso",
-        "loaded_from_list": "Detalles del vehículo cargados desde la lista de vehículos",
-        "vehicle_loaded": "Vehículo Cargado",
-        "loaded_successfully": "Detalles del vehículo cargados exitosamente",
-        "loading_details": "Cargando detalles del vehículo..."
       },
       "errors": {
         "internal_server_error": "Error interno del servidor cargando {context}. Por favor contacte al administrador.",

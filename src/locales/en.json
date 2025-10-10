@@ -65,7 +65,7 @@
         "address_placeholder": "e.g. San Martin Ave 254, Lima",
         "address_required": "Address is required",
         "email": "Email",
-        "email_placeholder": "contact@workshop.com",
+        "email_placeholder": "your-email{'@'}domain.com",
         "email_required": "Email is required",
         "phone": "Phone",
         "phone_placeholder": "999 888 777",
